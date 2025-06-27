@@ -114,7 +114,7 @@ class NavigationManager {
 // IP Logger
 class IPLogger {
   constructor() {
-    this.apiUrl = "https://your-flask-backend-url.com" // Replace with your actual backend URL
+    this.apiUrl = "https://your-backend-url.onrender.com" // Ganti dengan URL backend Anda yang sudah di-deploy
     this.init()
   }
 
@@ -124,20 +124,22 @@ class IPLogger {
 
   async logVisitor() {
     try {
-      // Get visitor's IP and basic info
-      const response = await fetch("https://api.ipify.org?format=json")
-      const data = await response.json()
-
+      // Get more detailed visitor info
       const visitorInfo = {
-        ip: data.ip,
+        ip: await this.getVisitorIP(),
         timestamp: new Date().toISOString(),
         userAgent: navigator.userAgent,
         referrer: document.referrer || "Direct",
         page: window.location.pathname,
+        language: navigator.language,
+        screen_resolution: `${screen.width}x${screen.height}`,
+        browser: this.getBrowserInfo(),
+        os: this.getOSInfo(),
+        device: this.getDeviceInfo(),
       }
 
-      // Send to backend (only if backend URL is configured)
-      if (this.apiUrl !== "https://your-flask-backend-url.com") {
+      // Send to backend
+      if (this.apiUrl !== "https://your-backend-url.onrender.com") {
         await this.sendToBackend(visitorInfo)
       } else {
         console.log("Visitor info (backend not configured):", visitorInfo)
@@ -145,6 +147,42 @@ class IPLogger {
     } catch (error) {
       console.log("IP logging failed:", error)
     }
+  }
+
+  async getVisitorIP() {
+    try {
+      const response = await fetch("https://api.ipify.org?format=json")
+      const data = await response.json()
+      return data.ip
+    } catch (error) {
+      return "Unknown"
+    }
+  }
+
+  getBrowserInfo() {
+    const userAgent = navigator.userAgent
+    if (userAgent.includes("Chrome")) return "Chrome"
+    if (userAgent.includes("Firefox")) return "Firefox"
+    if (userAgent.includes("Safari")) return "Safari"
+    if (userAgent.includes("Edge")) return "Edge"
+    return "Unknown"
+  }
+
+  getOSInfo() {
+    const userAgent = navigator.userAgent
+    if (userAgent.includes("Windows")) return "Windows"
+    if (userAgent.includes("Mac")) return "macOS"
+    if (userAgent.includes("Linux")) return "Linux"
+    if (userAgent.includes("Android")) return "Android"
+    if (userAgent.includes("iOS")) return "iOS"
+    return "Unknown"
+  }
+
+  getDeviceInfo() {
+    const userAgent = navigator.userAgent
+    if (/Mobi|Android/i.test(userAgent)) return "Mobile"
+    if (/Tablet|iPad/i.test(userAgent)) return "Tablet"
+    return "Desktop"
   }
 
   async sendToBackend(visitorInfo) {
@@ -196,26 +234,43 @@ class ContactFormHandler {
     submitBtn.disabled = true
 
     try {
-      // Here you would typically send the form data to your backend
-      // For now, we'll just simulate a successful submission
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      // Send to backend API
+      const response = await fetch(`${this.getBackendUrl()}/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
 
-      this.showSuccess()
-      this.form.reset()
+      const result = await response.json()
+
+      if (response.ok && result.status === "success") {
+        this.showSuccess(result.message)
+        this.form.reset()
+      } else {
+        throw new Error(result.message || "Gagal mengirim pesan")
+      }
     } catch (error) {
-      this.showError()
+      console.error("Contact form error:", error)
+      this.showError("Terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti.")
     } finally {
       submitBtn.innerHTML = originalText
       submitBtn.disabled = false
     }
   }
 
-  showSuccess() {
-    this.showNotification("Pesan berhasil dikirim! Terima kasih atas pesan Anda.", "success")
+  getBackendUrl() {
+    // Return your deployed backend URL
+    return "https://your-backend-url.onrender.com" // Ganti dengan URL backend Anda
   }
 
-  showError() {
-    this.showNotification("Terjadi kesalahan. Silakan coba lagi nanti.", "error")
+  showSuccess(message) {
+    this.showNotification(message || "Pesan berhasil dikirim! Terima kasih atas pesan Anda.", "success")
+  }
+
+  showError(message) {
+    this.showNotification(message || "Terjadi kesalahan. Silakan coba lagi nanti.", "error")
   }
 
   showNotification(message, type) {
