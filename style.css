@@ -258,17 +258,20 @@ h6 {
   text-align: center;
 }
 
-.profile-image {
+.robot-container {
   width: 200px;
   height: 200px;
   margin: 0 auto 20px;
-  background: var(--gradient);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 80px;
-  color: white;
+  overflow: hidden;
+}
+
+.profile-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 20px 0;
+  text-align: left;
 }
 
 .floating-icons {
@@ -414,6 +417,43 @@ section {
   font-weight: 500;
 }
 
+/* My Approach Section */
+.approach {
+  background: var(--bg-primary);
+}
+
+.approach-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.approach-list {
+  list-style: none;
+  padding: 0;
+}
+
+.approach-list li {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.approach-list li::before {
+  content: "•";
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: -5px;
+}
+
+.approach-list strong {
+  color: var(--text-primary);
+}
+
 /* Focus Section */
 .focus-grid {
   display: grid;
@@ -467,6 +507,36 @@ section {
 .focus-card p {
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+.focus-text {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  text-align: left;
+}
+
+.focus-text p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.focus-text ul {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.focus-text li {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.focus-text li::before {
+  content: "•";
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  position: absolute;
+  left: -20px;
 }
 
 /* Skills Section */
@@ -652,47 +722,18 @@ section {
   color: var(--secondary-color);
 }
 
-/* Contact Section */
-.contact {
+/* Testimonial Section */
+.testimonials {
   background: var(--bg-secondary);
 }
 
-.contact-content {
+.testimonial-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
 }
 
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.contact-icon {
-  width: 60px;
-  height: 60px;
-  background: var(--gradient);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  color: white;
-}
-
-.contact-details h3 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-  color: var(--text-primary);
-}
-
-.contact-details p {
-  color: var(--text-secondary);
-}
-
-.contact-form {
+.testimonial-form {
   background: var(--bg-card);
   padding: 40px;
   border-radius: 15px;
@@ -726,6 +767,62 @@ section {
 .form-group textarea {
   resize: vertical;
   min-height: 120px;
+}
+
+.testimonials-display {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.testimonial-card {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  background: var(--gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.testimonial-info h4 {
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+.testimonial-info p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.testimonial-message {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-style: italic;
 }
 
 /* Footer */
@@ -833,7 +930,7 @@ section {
     grid-template-columns: 1fr;
   }
 
-  .contact-content {
+  .testimonial-content {
     grid-template-columns: 1fr;
     gap: 40px;
   }
@@ -876,7 +973,7 @@ section {
     gap: 20px;
   }
 
-  .contact-form {
+  .testimonial-form {
     padding: 30px 20px;
   }
 }
@@ -967,6 +1064,64 @@ section {
   }
 }
 
+/* Custom Styles */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.nav-link.active {
+  color: var(--primary-color) !important;
+}
+
+.nav-link.active::after {
+  width: 100% !important;
+}
+
+.lazy {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.lazy.loaded {
+  opacity: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
 /* Responsive rocket button */
 @media (max-width: 768px) {
   .rocket-btn {
@@ -976,18 +1131,4 @@ section {
     bottom: 20px;
     right: 20px;
   }
-}
-
-/* Skill Logo Styling */
-.skill-logo {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
-
-/* Focus Logo Styling */
-.focus-logo {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
 }
