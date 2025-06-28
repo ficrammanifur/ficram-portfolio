@@ -417,15 +417,32 @@ section {
   font-weight: 500;
 }
 
-/* My Approach Section */
-.approach {
+/* Approach and Focus Section */
+.approach-focus {
   background: var(--bg-primary);
 }
 
-.approach-content {
-  max-width: 800px;
+.approach-focus-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
   margin: 0 auto;
-  text-align: left;
+}
+
+.approach-column,
+.focus-column {
+  background: var(--bg-card);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+.column-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--text-primary);
 }
 
 .approach-list {
@@ -439,6 +456,7 @@ section {
   margin-bottom: 20px;
   padding-left: 30px;
   position: relative;
+  text-align: justify;
 }
 
 .approach-list li::before {
@@ -454,64 +472,7 @@ section {
   color: var(--text-primary);
 }
 
-/* Focus Section */
-.focus-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
-
-.focus-card {
-  background: var(--bg-card);
-  padding: 40px 30px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: var(--shadow);
-  transition: all 0.3s ease;
-  border: 1px solid var(--border-color);
-}
-
-.focus-card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-lg);
-}
-
-.focus-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 20px;
-  background: var(--gradient);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.focus-icon i {
-  font-size: 35px;
-  color: white;
-}
-
-.focus-icon img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-}
-
-.focus-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: var(--text-primary);
-}
-
-.focus-card p {
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
 .focus-text {
-  max-width: 800px;
-  margin: 0 auto 40px;
   text-align: left;
 }
 
@@ -529,6 +490,7 @@ section {
 .focus-text li {
   margin-bottom: 10px;
   position: relative;
+  text-align: justify;
 }
 
 .focus-text li::before {
@@ -948,6 +910,11 @@ section {
   .hero-buttons {
     justify-content: center;
   }
+
+  .approach-focus-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -975,6 +942,11 @@ section {
 
   .testimonial-form {
     padding: 30px 20px;
+  }
+
+  .approach-column,
+  .focus-column {
+    padding: 20px;
   }
 }
 
