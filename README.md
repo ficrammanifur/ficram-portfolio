@@ -1,36 +1,115 @@
-# Personal Portfolio - Ficram Manifur Farissa
+# 🚀 Personal Portfolio - Ficram Manifur Farissa
 
-Website portofolio pribadi untuk menampilkan profil, keahlian, proyek, dan tujuan Ficram Manifur Farissa — mahasiswa Teknik Elektro yang fokus pada AI, IoT, Flutter, dan Flask backend.
+Website portfolio pribadi yang menampilkan profil, keahlian, proyek, dan pendekatan kerja Ficram Manifur Farissa — mahasiswa Teknik Elektro yang fokus pada AI, IoT, Flutter, dan Flask backend.
 
-## 🚀 Features
+![Portfolio Preview](https://img.shields.io/badge/Status-Live-brightgreen) ![Version](https://img.shields.io/badge/Version-2.0-blue) ![License](https://img.shields.io/badge/License-MIT-yellow)
 
-- **Modern Design**: Tampilan yang bersih dan profesional
-- **Dark Mode**: Toggle antara light dan dark theme
-- **Responsive**: Optimal di semua perangkat (desktop, tablet, mobile)
-- **Smooth Animations**: Animasi scroll yang halus menggunakan AOS.js
-- **IP Logger**: Sistem tracking pengunjung (opsional)
-- **Contact Form**: Form kontak yang fungsional
-- **SEO Optimized**: Meta tags dan struktur yang SEO-friendly
+## ✨ Fitur Terbaru (v2.0)
 
-## 📱 Sections
+### 🤖 **3D Interactive Robot Head**
+- Robot head 3D yang dibuat dengan Three.js
+- Mengikuti pergerakan mouse cursor secara real-time
+- Animasi floating yang halus dan natural
+- Desain futuristik dengan material metalik dan lighting effects
 
-- **Hero Section**: Perkenalan dan CTA utama
-- **About Me (👨‍💻)**: Profil dan statistik personal
-- **Current Focus (🎯)**: Area fokus saat ini (AI, IoT, Flutter, Backend)
-- **Skills (🛠️)**: Keahlian teknis dan tools
-- **Life Motto (🚀)**: Filosofi dan motivasi hidup
-- **Projects Portfolio**: Showcase proyek-proyek utama
-- **Contact**: Informasi kontak dan form
+### 🛠️ **My Approach Section**
+- Section baru yang menjelaskan filosofi dan metodologi kerja
+- Pendekatan eksperimen cepat dan pembelajaran berkelanjutan
+- Fokus pada implementasi praktis dari teori
+
+### 🎯 **Updated Focus Section**
+- Konten yang lebih spesifik dan personal
+- Fokus pada pengembangan prototipe robot dan IoT
+- Detail teknologi yang sedang dipelajari (MQTT, Cloud deployment, dll)
+
+### 💬 **Interactive Testimonial System**
+- Menggantikan contact form dengan sistem testimonial
+- Form validasi lengkap (nama, email, posisi, pesan)
+- Penyimpanan lokal dengan localStorage
+- Tampilan kartu testimonial dengan avatar inisial
+- Notifikasi sukses setelah submit
+
+### 📄 **Download Resume Feature**
+- Tombol download resume dengan styling konsisten
+- Alert message untuk status development
+
+## 🎨 Fitur Utama
+
+### 🌓 **Dark/Light Mode**
+- Toggle theme dengan animasi smooth
+- Persistent theme selection (localStorage)
+- Automatic icon switching
+
+### 🚀 **Rocket Scroll-to-Top**
+- Tombol rocket dengan animasi launch
+- Particle effects saat diklik
+- Hover effects dengan trail animation
+- Responsive design untuk mobile
+
+### 📱 **Responsive Design**
+- Optimal di semua perangkat (desktop, tablet, mobile)
+- Hamburger menu untuk mobile navigation
+- Adaptive grid layouts
+
+### ✨ **Smooth Animations**
+- AOS (Animate On Scroll) integration
+- Hover effects pada cards dan buttons
+- Smooth scrolling navigation
+- Loading animations
+
+## 📋 Sections
+
+1. **🏠 Hero Section**
+   - Interactive 3D robot head
+   - Personal introduction
+   - Call-to-action buttons
+   - Floating tech icons
+
+2. **👨‍💻 About Me**
+   - Personal background
+   - Statistics (projects, experience, technologies)
+   - Educational focus
+
+3. **🛠️ My Approach**
+   - Work philosophy
+   - Methodology explanation
+   - Learning approach
+
+4. **🎯 Focus Saat Ini**
+   - Current learning areas
+   - Specific technologies being explored
+   - Project types being developed
+
+5. **🔧 Skills**
+   - Programming languages
+   - Frameworks & libraries
+   - Tools & technologies
+
+6. **🚀 Life Motto**
+   - Personal philosophy
+   - Motivational quote
+   - Gradient background design
+
+7. **📁 Projects Portfolio**
+   - Featured projects showcase
+   - Technology tags
+   - Live demo links
+
+8. **💬 Testimonials**
+   - Interactive testimonial form
+   - Real-time testimonial display
+   - Local storage persistence
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **HTML5**: Struktur semantic
-- **CSS3**: Styling dengan CSS Variables untuk theming
-- **Vanilla JavaScript**: Interaktivitas tanpa framework
+- **HTML5**: Semantic structure
+- **CSS3**: Modern styling with CSS Variables
+- **Vanilla JavaScript**: ES6+ classes and modules
+- **Three.js**: 3D graphics for robot head
 - **AOS.js**: Scroll animations
-- **Font Awesome**: Icons
-- **Google Fonts**: Typography (Poppins)
+- **Font Awesome**: Icon library
+- **Google Fonts**: Poppins typography
 
 ### Libraries & CDN
 \`\`\`html
@@ -42,154 +121,155 @@ Website portofolio pribadi untuk menampilkan profil, keahlian, proyek, dan tujua
 
 <!-- AOS Animation -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 \`\`\`
 
-## 🚀 Deployment ke GitHub Pages
+## 🚀 Quick Start
 
-### 1. Setup Repository
+### 1. Clone Repository
 \`\`\`bash
-# Clone atau download project
-git clone <your-repo-url>
+git clone https://github.com/ficrammanifur/ficram-portfolio.git
 cd ficram-portfolio
-
-# Initialize git (jika belum)
-git init
-git add .
-git commit -m "Initial commit: Personal portfolio website"
-git branch -M main
-git remote add origin https://github.com/username/ficram-portfolio.git
-git push -u origin main
 \`\`\`
 
-### 2. Enable GitHub Pages
-1. Buka repository di GitHub
-2. Go to **Settings** > **Pages**
-3. Source: **Deploy from a branch**
-4. Branch: **main** / **root**
-5. Save
-
-### 3. Custom Domain (Opsional)
-Jika ingin menggunakan custom domain:
-1. Buat file `CNAME` di root directory
-2. Isi dengan domain Anda: `ficram-portfolio.com`
-3. Commit dan push
-
-## 🔧 Konfigurasi
-
-### IP Logger Backend
-Untuk mengaktifkan IP logger, update URL backend di `main.js`:
-\`\`\`javascript
-class IPLogger {
-    constructor() {
-        this.apiUrl = 'https://your-flask-backend-url.com'; // Ganti dengan URL backend Flask Anda
-        this.init();
-    }
-\`\`\`
-
-### Contact Form
-Form kontak saat ini menggunakan simulasi. Untuk integrasi dengan backend:
-\`\`\`javascript
-// Di ContactFormHandler class, update handleSubmit method
-async handleSubmit(e) {
-    // Kirim ke backend Flask atau service email seperti EmailJS
-    const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    });
-}
-\`\`\`
-
-## 📁 File Structure
+### 2. File Structure
 \`\`\`
 ficram-portfolio/
 ├── index.html          # Main HTML file
 ├── style.css           # Styling dan theming
 ├── main.js            # JavaScript functionality
 ├── README.md          # Documentation
-└── CNAME             # Custom domain (opsional)
+└── assets/            # Images and media (optional)
 \`\`\`
+
+### 3. Local Development
+\`\`\`bash
+# Using Live Server (VS Code extension)
+# Or any local server
+python -m http.server 8000
+# Then open http://localhost:8000
+\`\`\`
+
+### 4. Deploy to GitHub Pages
+1. Push code to GitHub repository
+2. Go to **Settings** > **Pages**
+3. Source: **Deploy from a branch**
+4. Branch: **main** / **root**
+5. Save and wait for deployment
 
 ## 🎨 Customization
 
 ### Colors & Theming
-Edit CSS variables di `style.css`:
+Edit CSS variables in `style.css`:
 \`\`\`css
 :root {
-  --primary-color: #667eea;      /* Warna utama */
-  --secondary-color: #764ba2;    /* Warna sekunder */
-  --accent-color: #f093fb;       /* Warna aksen */
+  --primary-color: #667eea;      /* Main brand color */
+  --secondary-color: #764ba2;    /* Secondary brand color */
+  --accent-color: #f093fb;       /* Accent color */
   /* ... */
 }
 \`\`\`
 
-### Content
-Update konten di `index.html`:
-- Ganti nama dan informasi personal
-- Update deskripsi proyek
-- Tambah/hapus section sesuai kebutuhan
-- Update link sosial media dan kontak
+### Content Updates
+1. **Personal Information**: Update name, description, and contact details
+2. **Projects**: Add/modify projects in the projects section
+3. **Skills**: Update technology skills and tools
+4. **Social Links**: Update footer social media links
 
-### Projects
-Tambah proyek baru di section projects:
-\`\`\`html
-<div class="project-card" data-aos="fade-up">
-    <div class="project-image">
-        <i class="fas fa-your-icon"></i>
-    </div>
-    <div class="project-content">
-        <h3>Nama Proyek</h3>
-        <p>Deskripsi proyek...</p>
-        <div class="project-tech">
-            <span class="tech-tag">Technology</span>
-        </div>
-        <div class="project-links">
-            <a href="#" class="project-link">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-        </div>
-    </div>
-</div>
+### 3D Robot Customization
+Modify robot appearance in `main.js`:
+\`\`\`javascript
+// In RobotHead3D class, createRobotHead method
+const headMaterial = new THREE.MeshPhongMaterial({ 
+  color: 0x667eea,  // Change robot color
+  shininess: 100
+})
 \`\`\`
-
-## 🔍 SEO Optimization
-
-Website sudah dioptimasi untuk SEO dengan:
-- Meta tags yang relevan
-- Semantic HTML structure
-- Alt text untuk images
-- Structured data (bisa ditambahkan)
-- Fast loading performance
 
 ## 📱 Browser Support
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Mobile browsers
+- ✅ Chrome (latest)
+- ✅ Firefox (latest)
+- ✅ Safari (latest)
+- ✅ Edge (latest)
+- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
 
-## 🚀 Performance
+## 🔧 Performance Features
 
-- Lazy loading untuk images
-- CSS dan JS minification (untuk production)
-- Font preloading
-- Optimized animations
-- Responsive images
+- **Lazy Loading**: Images load when needed
+- **Font Preloading**: Critical fonts preloaded
+- **Optimized Animations**: Hardware-accelerated CSS animations
+- **Responsive Images**: Adaptive image sizing
+- **Minimal Dependencies**: Lightweight external libraries
 
-## 📞 Support
+## 📊 SEO Optimization
 
-Jika ada pertanyaan atau butuh bantuan:
-- Email: ficramm@email.com
-- GitHub Issues: [Create Issue](https://github.com/username/ficram-portfolio/issues)
+- ✅ Semantic HTML structure
+- ✅ Meta tags for social sharing
+- ✅ Alt text for images
+- ✅ Fast loading performance
+- ✅ Mobile-friendly design
+- ✅ Structured data ready
+
+## 🔄 Version History
+
+### v2.0 (Current)
+- ✨ Added 3D interactive robot head
+- ✨ New "My Approach" section
+- ✨ Updated "Focus Saat Ini" content
+- ✨ Testimonial system replacing contact form
+- ✨ Download resume button
+- 🐛 Fixed CSS class naming bugs
+
+### v1.0
+- 🎉 Initial release
+- 🌓 Dark/light mode toggle
+- 🚀 Rocket scroll-to-top button
+- 📱 Responsive design
+- ✨ AOS animations
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-MIT License - bebas digunakan dan dimodifikasi.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Contact & Support
+
+- **Email**: ficramm@gmail.com
+- **LinkedIn**: [linkedin.com/in/ficram-manifur](https://linkedin.com/in/ficram-manifur)
+- **GitHub**: [github.com/ficrammanifur](https://github.com/ficrammanifur)
+- **Instagram**: [@ficrammanifur](https://instagram.com/ficrammanifur)
+- **WhatsApp**: [+62 823-1136-3925](https://wa.me/6282311363925)
+
+## 🙏 Acknowledgments
+
+- **Three.js** for 3D graphics capabilities
+- **AOS.js** for smooth scroll animations
+- **Font Awesome** for beautiful icons
+- **Google Fonts** for typography
+- **GitHub Pages** for free hosting
 
 ---
 
-**Happy Coding! 🚀**
+**Made with ❤️ by Ficram Manifur Farissa**
 
-Dibuat oleh Ficram Manifur Farissa
+*"I always tell myself — it's not hard, it's just new."*
+
+---
+
+### 🚀 Live Demo
+Visit the live website: [https://ficrammanifur.github.io/ficram-portfolio/](https://ficrammanifur.github.io/ficram-portfolio/)
+
+### ⭐ Star this repo if you found it helpful!
+\`\`\`bash
+# Clone and customize for your own portfolio
+git clone https://github.com/ficrammanifur/ficram-portfolio.git
