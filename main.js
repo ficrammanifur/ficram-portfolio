@@ -1,3 +1,10 @@
+// Global variables
+let testimonials = []
+let scene, camera, renderer, robotHead
+let mouseX = 0,
+  mouseY = 0
+const THREE = window.THREE // Declare the THREE variable
+
 // Theme Management
 class ThemeManager {
   constructor() {
@@ -52,18 +59,14 @@ class NavigationManager {
   }
 
   bindEvents() {
-    // Hamburger menu toggle
     this.hamburger.addEventListener("click", () => this.toggleMobileMenu())
 
-    // Close mobile menu when clicking nav links
     this.navLinks.forEach((link) => {
       link.addEventListener("click", () => this.closeMobileMenu())
     })
 
-    // Handle scroll for navbar background
     window.addEventListener("scroll", () => this.handleScroll())
 
-    // Smooth scroll for navigation links
     this.navLinks.forEach((link) => {
       link.addEventListener("click", (e) => this.smoothScroll(e))
     })
@@ -111,206 +114,260 @@ class NavigationManager {
   }
 }
 
-// IP Logger
-class IPLogger {
+// 3D Robot Head
+class RobotHead3D {
   constructor() {
-    this.apiUrl = "https://your-backend-url.onrender.com" // Ganti dengan URL backend Anda yang sudah di-deploy
     this.init()
   }
 
   init() {
-    this.logVisitor()
+    const container = document.getElementById("robot-container")
+
+    // Scene setup
+    scene = new THREE.Scene()
+    camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000)
+    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+    renderer.setSize(200, 200)
+    renderer.setClearColor(0x000000, 0)
+    container.appendChild(renderer.domElement)
+
+    // Create robot head
+    this.createRobotHead()
+
+    // Camera position
+    camera.position.z = 5
+
+    // Mouse tracking
+    document.addEventListener("mousemove", this.onMouseMove.bind(this))
+
+    // Animation loop
+    this.animate()
   }
 
-  async logVisitor() {
-    try {
-      // Get more detailed visitor info
-      const visitorInfo = {
-        ip: await this.getVisitorIP(),
-        timestamp: new Date().toISOString(),
-        userAgent: navigator.userAgent,
-        referrer: document.referrer || "Direct",
-        page: window.location.pathname,
-        language: navigator.language,
-        screen_resolution: `${screen.width}x${screen.height}`,
-        browser: this.getBrowserInfo(),
-        os: this.getOSInfo(),
-        device: this.getDeviceInfo(),
-      }
+  createRobotHead() {
+    const group = new THREE.Group()
 
-      // Send to backend
-      if (this.apiUrl !== "https://your-backend-url.onrender.com") {
-        await this.sendToBackend(visitorInfo)
-      } else {
-        console.log("Visitor info (backend not configured):", visitorInfo)
-      }
-    } catch (error) {
-      console.log("IP logging failed:", error)
+    // Head (main cube)
+    const headGeometry = new THREE.BoxGeometry(2, 2, 2)
+    const headMaterial = new THREE.MeshPhongMaterial({
+      color: 0x667eea,
+      shininess: 100,
+    })
+    const head = new THREE.Mesh(headGeometry, headMaterial)
+    group.add(head)
+
+    // Eyes
+    const eyeGeometry = new THREE.SphereGeometry(0.2, 16, 16)
+    const eyeMaterial = new THREE.MeshPhongMaterial({ color: 0x00ffff, emissive: 0x004444 })
+
+    const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial)
+    leftEye.position.set(-0.4, 0.3, 1.1)
+    group.add(leftEye)
+
+    const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial)
+    rightEye.position.set(0.4, 0.3, 1.1)
+    group.add(rightEye)
+
+    // Mouth
+    const mouthGeometry = new THREE.BoxGeometry(0.8, 0.1, 0.1)
+    const mouthMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 })
+    const mouth = new THREE.Mesh(mouthGeometry, mouthMaterial)
+    mouth.position.set(0, -0.3, 1.1)
+    group.add(mouth)
+
+    // Antennas
+    const antennaGeometry = new THREE.CylinderGeometry(0.02, 0.02, 0.5)
+    const antennaMaterial = new THREE.MeshPhongMaterial({ color: 0x764ba2 })
+
+    const leftAntenna = new THREE.Mesh(antennaGeometry, antennaMaterial)
+    leftAntenna.position.set(-0.5, 1.25, 0)
+    group.add(leftAntenna)
+
+    const rightAntenna = new THREE.Mesh(antennaGeometry, antennaMaterial)
+    rightAntenna.position.set(0.5, 1.25, 0)
+    group.add(rightAntenna)
+
+    // Antenna tips
+    const tipGeometry = new THREE.SphereGeometry(0.08, 8, 8)
+    const tipMaterial = new THREE.MeshPhongMaterial({ color: 0xff6b6b, emissive: 0x441111 })
+
+    const leftTip = new THREE.Mesh(tipGeometry, tipMaterial)
+    leftTip.position.set(-0.5, 1.5, 0)
+    group.add(leftTip)
+
+    const rightTip = new THREE.Mesh(tipGeometry, tipMaterial)
+    rightTip.position.set(0.5, 1.5, 0)
+    group.add(rightTip)
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.6)
+    scene.add(ambientLight)
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
+    directionalLight.position.set(1, 1, 1)
+    scene.add(directionalLight)
+
+    robotHead = group
+    scene.add(robotHead)
+  }
+
+  onMouseMove(event) {
+    mouseX = (event.clientX / window.innerWidth) * 2 - 1
+    mouseY = -(event.clientY / window.innerHeight) * 2 + 1
+  }
+
+  animate() {
+    requestAnimationFrame(this.animate.bind(this))
+
+    if (robotHead) {
+      // Smooth rotation following mouse
+      robotHead.rotation.y += (mouseX * 0.3 - robotHead.rotation.y) * 0.05
+      robotHead.rotation.x += (mouseY * 0.2 - robotHead.rotation.x) * 0.05
+
+      // Gentle floating animation
+      robotHead.position.y = Math.sin(Date.now() * 0.001) * 0.1
     }
-  }
 
-  async getVisitorIP() {
-    try {
-      const response = await fetch("https://api.ipify.org?format=json")
-      const data = await response.json()
-      return data.ip
-    } catch (error) {
-      return "Unknown"
-    }
-  }
-
-  getBrowserInfo() {
-    const userAgent = navigator.userAgent
-    if (userAgent.includes("Chrome")) return "Chrome"
-    if (userAgent.includes("Firefox")) return "Firefox"
-    if (userAgent.includes("Safari")) return "Safari"
-    if (userAgent.includes("Edge")) return "Edge"
-    return "Unknown"
-  }
-
-  getOSInfo() {
-    const userAgent = navigator.userAgent
-    if (userAgent.includes("Windows")) return "Windows"
-    if (userAgent.includes("Mac")) return "macOS"
-    if (userAgent.includes("Linux")) return "Linux"
-    if (userAgent.includes("Android")) return "Android"
-    if (userAgent.includes("iOS")) return "iOS"
-    return "Unknown"
-  }
-
-  getDeviceInfo() {
-    const userAgent = navigator.userAgent
-    if (/Mobi|Android/i.test(userAgent)) return "Mobile"
-    if (/Tablet|iPad/i.test(userAgent)) return "Tablet"
-    return "Desktop"
-  }
-
-  async sendToBackend(visitorInfo) {
-    try {
-      const response = await fetch(`${this.apiUrl}/log`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(visitorInfo),
-      })
-
-      if (response.ok) {
-        console.log("Visitor logged successfully")
-      }
-    } catch (error) {
-      console.log("Failed to send visitor info to backend:", error)
-    }
+    renderer.render(scene, camera)
   }
 }
 
-// Contact Form Handler
-class ContactFormHandler {
+// Testimonial Manager
+class TestimonialManager {
   constructor() {
-    this.form = document.getElementById("contact-form")
+    this.form = document.getElementById("testimonial-form")
+    this.testimonialsList = document.getElementById("testimonials-list")
     this.init()
   }
 
   init() {
-    if (this.form) {
-      this.form.addEventListener("submit", (e) => this.handleSubmit(e))
-    }
+    this.form.addEventListener("submit", this.handleSubmit.bind(this))
+    this.loadTestimonials()
   }
 
-  async handleSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault()
 
     const formData = new FormData(this.form)
-    const data = {
-      name: formData.get("name"),
+    const testimonial = {
+      fullName: formData.get("fullName"),
       email: formData.get("email"),
-      message: formData.get("message"),
+      position: formData.get("position"),
+      message: formData.get("testimonialMessage"),
+      timestamp: new Date().toISOString(),
     }
 
-    // Show loading state
-    const submitBtn = this.form.querySelector('button[type="submit"]')
-    const originalText = submitBtn.innerHTML
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...'
-    submitBtn.disabled = true
-
-    try {
-      // Send to backend API
-      const response = await fetch(`${this.getBackendUrl()}/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      })
-
-      const result = await response.json()
-
-      if (response.ok && result.status === "success") {
-        this.showSuccess(result.message)
-        this.form.reset()
-      } else {
-        throw new Error(result.message || "Gagal mengirim pesan")
-      }
-    } catch (error) {
-      console.error("Contact form error:", error)
-      this.showError("Terjadi kesalahan saat mengirim pesan. Silakan coba lagi nanti.")
-    } finally {
-      submitBtn.innerHTML = originalText
-      submitBtn.disabled = false
+    // Validation
+    if (!testimonial.fullName || !testimonial.email || !testimonial.position || !testimonial.message) {
+      alert("Please fill in all fields before submitting.")
+      return
     }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(testimonial.email)) {
+      alert("Please enter a valid email address.")
+      return
+    }
+
+    // Add to testimonials array
+    testimonials.unshift(testimonial)
+
+    // Save to localStorage
+    localStorage.setItem("testimonials", JSON.stringify(testimonials))
+
+    // Display testimonials
+    this.displayTestimonials()
+
+    // Reset form
+    this.form.reset()
+
+    // Show success message
+    this.showNotification("Thank you for your testimonial!", "success")
   }
 
-  getBackendUrl() {
-    // Return your deployed backend URL
-    return "https://your-backend-url.onrender.com" // Ganti dengan URL backend Anda
+  loadTestimonials() {
+    const saved = localStorage.getItem("testimonials")
+    if (saved) {
+      testimonials = JSON.parse(saved)
+    }
+    this.displayTestimonials()
   }
 
-  showSuccess(message) {
-    this.showNotification(message || "Pesan berhasil dikirim! Terima kasih atas pesan Anda.", "success")
-  }
+  displayTestimonials() {
+    this.testimonialsList.innerHTML = ""
 
-  showError(message) {
-    this.showNotification(message || "Terjadi kesalahan. Silakan coba lagi nanti.", "error")
+    if (testimonials.length === 0) {
+      this.testimonialsList.innerHTML = `
+        <div style="text-align: center; color: var(--text-muted); padding: 40px;">
+          <i class="fas fa-comments" style="font-size: 48px; margin-bottom: 20px; opacity: 0.5;"></i>
+          <p>No testimonials yet. Be the first to share your experience!</p>
+        </div>
+      `
+      return
+    }
+
+    testimonials.forEach((testimonial) => {
+      const card = document.createElement("div")
+      card.className = "testimonial-card"
+
+      const initials = testimonial.fullName
+        .split(" ")
+        .map((name) => name[0])
+        .join("")
+        .toUpperCase()
+
+      card.innerHTML = `
+        <div class="testimonial-header">
+          <div class="testimonial-avatar">${initials}</div>
+          <div class="testimonial-info">
+            <h4>${testimonial.fullName}</h4>
+            <p>${testimonial.position}</p>
+          </div>
+        </div>
+        <div class="testimonial-message">"${testimonial.message}"</div>
+      `
+
+      this.testimonialsList.appendChild(card)
+    })
   }
 
   showNotification(message, type) {
     const notification = document.createElement("div")
     notification.className = `notification ${type}`
     notification.innerHTML = `
-            <i class="fas ${type === "success" ? "fa-check-circle" : "fa-exclamation-circle"}"></i>
-            <span>${message}</span>
-        `
+      <i class="fas ${type === "success" ? "fa-check-circle" : "fa-exclamation-circle"}"></i>
+      <span>${message}</span>
+    `
 
-    // Add notification styles
     notification.style.cssText = `
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: ${type === "success" ? "#48bb78" : "#f56565"};
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: slideIn 0.3s ease;
-        `
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      background: ${type === "success" ? "#48bb78" : "#f56565"};
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: slideIn 0.3s ease;
+    `
 
     document.body.appendChild(notification)
 
-    // Remove notification after 5 seconds
     setTimeout(() => {
       notification.style.animation = "slideOut 0.3s ease"
       setTimeout(() => {
         document.body.removeChild(notification)
       }, 300)
-    }, 5000)
+    }, 3000)
   }
 }
 
-// Scroll Animations and Effects
+// Scroll Effects
 class ScrollEffects {
   constructor() {
     this.init()
@@ -323,8 +380,7 @@ class ScrollEffects {
   }
 
   initAOS() {
-    // Initialize AOS (Animate On Scroll)
-    const AOS = window.AOS // Declare the AOS variable
+    const AOS = window.AOS
     if (typeof AOS !== "undefined") {
       AOS.init({
         duration: 1000,
@@ -340,45 +396,43 @@ class ScrollEffects {
     scrollToTopBtn.innerHTML = '<i class="fas fa-rocket"></i>'
     scrollToTopBtn.className = "scroll-to-top rocket-btn"
     scrollToTopBtn.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        transition: all 0.3s ease;
-        opacity: 0;
-        visibility: hidden;
-        z-index: 1000;
-        transform: rotate(-45deg);
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 1000;
+      transform: rotate(-45deg);
     `
 
-    // Add rocket trail effect
     const rocketTrail = document.createElement("div")
     rocketTrail.className = "rocket-trail"
     rocketTrail.style.cssText = `
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 3px;
-        height: 20px;
-        background: linear-gradient(to bottom, #ff6b6b, transparent);
-        border-radius: 2px;
-        opacity: 0;
-        transition: all 0.3s ease;
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 20px;
+      background: linear-gradient(to bottom, #ff6b6b, transparent);
+      border-radius: 2px;
+      opacity: 0;
+      transition: all 0.3s ease;
     `
     scrollToTopBtn.appendChild(rocketTrail)
 
     document.body.appendChild(scrollToTopBtn)
 
-    // Show/hide button based on scroll position
     window.addEventListener("scroll", () => {
       if (window.scrollY > 300) {
         scrollToTopBtn.style.opacity = "1"
@@ -391,19 +445,14 @@ class ScrollEffects {
       }
     })
 
-    // Rocket launch animation when clicked
     scrollToTopBtn.addEventListener("click", () => {
-      // Create rocket launch animation
       this.launchRocket(scrollToTopBtn)
-
-      // Scroll to top
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       })
     })
 
-    // Hover effects
     scrollToTopBtn.addEventListener("mouseenter", () => {
       scrollToTopBtn.style.transform = "rotate(-45deg) translateY(-5px) scale(1.1)"
       scrollToTopBtn.style.boxShadow = "0 8px 20px rgba(0,0,0,0.25)"
@@ -420,51 +469,45 @@ class ScrollEffects {
   }
 
   launchRocket(rocketBtn) {
-    // Create launch effect
     const launchEffect = document.createElement("div")
     launchEffect.className = "rocket-launch-effect"
     launchEffect.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 60px;
-        height: 60px;
-        pointer-events: none;
-        z-index: 1001;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      pointer-events: none;
+      z-index: 1001;
     `
 
-    // Create multiple particles for exhaust effect
     for (let i = 0; i < 8; i++) {
       const particle = document.createElement("div")
       particle.style.cssText = `
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: ${i % 2 === 0 ? "#ff6b6b" : "#ffa500"};
-            border-radius: 50%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            animation: rocketParticle 1s ease-out forwards;
-            animation-delay: ${i * 0.1}s;
-        `
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: ${i % 2 === 0 ? "#ff6b6b" : "#ffa500"};
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        animation: rocketParticle 1s ease-out forwards;
+        animation-delay: ${i * 0.1}s;
+      `
       launchEffect.appendChild(particle)
     }
 
     document.body.appendChild(launchEffect)
 
-    // Animate the rocket button
     rocketBtn.style.transition = "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
     rocketBtn.style.transform = "rotate(-45deg) translateY(-100vh) scale(0.5)"
     rocketBtn.style.opacity = "0"
 
-    // Reset rocket position after animation
     setTimeout(() => {
       rocketBtn.style.transition = "all 0.3s ease"
       rocketBtn.style.transform = "rotate(-45deg) translateY(0) scale(1)"
       rocketBtn.style.opacity = window.scrollY > 300 ? "1" : "0"
-
-      // Remove launch effect
       document.body.removeChild(launchEffect)
     }, 1000)
   }
@@ -477,7 +520,6 @@ class ScrollEffects {
       let current = ""
       sections.forEach((section) => {
         const sectionTop = section.offsetTop
-        const sectionHeight = section.clientHeight
         if (window.scrollY >= sectionTop - 200) {
           current = section.getAttribute("id")
         }
@@ -493,7 +535,7 @@ class ScrollEffects {
   }
 }
 
-// Performance Optimization
+// Performance Optimizer
 class PerformanceOptimizer {
   constructor() {
     this.init()
@@ -521,7 +563,6 @@ class PerformanceOptimizer {
   }
 
   preloadCriticalResources() {
-    // Preload critical fonts
     const fontLink = document.createElement("link")
     fontLink.rel = "preload"
     fontLink.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -537,7 +578,6 @@ class PortfolioApp {
   }
 
   init() {
-    // Wait for DOM to be fully loaded
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", () => this.initializeComponents())
     } else {
@@ -546,84 +586,21 @@ class PortfolioApp {
   }
 
   initializeComponents() {
-    // Initialize all components
     this.themeManager = new ThemeManager()
     this.navigationManager = new NavigationManager()
-    this.ipLogger = new IPLogger()
-    this.contactFormHandler = new ContactFormHandler()
+    this.robotHead3D = new RobotHead3D()
+    this.testimonialManager = new TestimonialManager()
     this.scrollEffects = new ScrollEffects()
     this.performanceOptimizer = new PerformanceOptimizer()
 
-    // Add loading animation
+    // Download resume button
+    document.getElementById("download-resume").addEventListener("click", () => {
+      alert("Not available yet. My resume is still in progress. Please check back later.")
+    })
+
     document.body.classList.add("loading")
 
-    // Add custom CSS for notifications and animations
-    this.addCustomStyles()
-
     console.log("Portfolio website initialized successfully!")
-  }
-
-  addCustomStyles() {
-    const style = document.createElement("style")
-    style.textContent = `
-            @keyframes slideIn {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-
-            @keyframes slideOut {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-            }
-
-            .nav-link.active {
-                color: var(--primary-color) !important;
-            }
-
-            .nav-link.active::after {
-                width: 100% !important;
-            }
-
-            .lazy {
-                opacity: 0;
-                transition: opacity 0.3s;
-            }
-
-            .lazy.loaded {
-                opacity: 1;
-            }
-
-            /* Custom scrollbar */
-            ::-webkit-scrollbar {
-                width: 8px;
-            }
-
-            ::-webkit-scrollbar-track {
-                background: var(--bg-secondary);
-            }
-
-            ::-webkit-scrollbar-thumb {
-                background: var(--primary-color);
-                border-radius: 4px;
-            }
-
-            ::-webkit-scrollbar-thumb:hover {
-                background: var(--secondary-color);
-            }
-        `
-    document.head.appendChild(style)
   }
 }
 
