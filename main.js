@@ -419,7 +419,6 @@ class ScrollEffects {
     })
   }
 
-  // Add this new method to the ScrollEffects class
   launchRocket(rocketBtn) {
     // Create launch effect
     const launchEffect = document.createElement("div")
