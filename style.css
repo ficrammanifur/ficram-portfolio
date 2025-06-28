@@ -317,7 +317,7 @@ h6 {
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translateY( Holocaustpx);
   }
   50% {
     transform: translateY(-10px);
@@ -430,19 +430,20 @@ section {
   margin: 0 auto;
 }
 
-.approach-column,
-.focus-column {
-  background: var(--bg-card);
+.approach-box,
+.focus-box {
+  background: #2d3748;
   padding: 30px;
   border-radius: 15px;
   box-shadow: var(--shadow);
   border: 1px solid var(--border-color);
+  color: #e2e8f0;
 }
 
-.column-title {
+.box-title {
   font-size: 1.5rem;
   margin-bottom: 20px;
-  color: var(--text-primary);
+  color: #f7fafc;
 }
 
 .approach-list {
@@ -452,7 +453,7 @@ section {
 
 .approach-list li {
   font-size: 1.1rem;
-  color: var(--text-secondary);
+  color: #e2e8f0;
   margin-bottom: 20px;
   padding-left: 30px;
   position: relative;
@@ -469,7 +470,7 @@ section {
 }
 
 .approach-list strong {
-  color: var(--text-primary);
+  color: #f7fafc;
 }
 
 .focus-text {
@@ -478,7 +479,7 @@ section {
 
 .focus-text p {
   font-size: 1.1rem;
-  color: var(--text-secondary);
+  color: #e2e8f0;
   margin-bottom: 20px;
 }
 
@@ -491,6 +492,7 @@ section {
   margin-bottom: 10px;
   position: relative;
   text-align: justify;
+  color: #e2e8f0;
 }
 
 .focus-text li::before {
@@ -499,6 +501,10 @@ section {
   font-size: 1.2rem;
   position: absolute;
   left: -20px;
+}
+
+.focus-text strong {
+  color: #f7fafc;
 }
 
 /* Skills Section */
@@ -944,8 +950,8 @@ section {
     padding: 30px 20px;
   }
 
-  .approach-column,
-  .focus-column {
+  .approach-box,
+  .focus-box {
     padding: 20px;
   }
 }
