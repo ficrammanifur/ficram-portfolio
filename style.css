@@ -447,13 +447,15 @@ section {
   justify-content: center;
 }
 
-.focus-icon i,
-.focus-icon img {
+.focus-icon i {
   font-size: 35px;
+  color: white;
+}
+
+.focus-icon img {
   width: 50px;
   height: 50px;
   object-fit: contain;
-  color: white;
 }
 
 .focus-card h3 {
@@ -510,13 +512,15 @@ section {
   box-shadow: var(--shadow-lg);
 }
 
-.skill-item i,
-.skill-item img {
+.skill-item i {
   font-size: 24px;
+  color: var(--primary-color);
+}
+
+.skill-item img {
   width: 24px;
   height: 24px;
   object-fit: contain;
-  color: var(--primary-color);
 }
 
 .skill-item span {
@@ -983,7 +987,7 @@ section {
 
 /* Focus Logo Styling */
 .focus-logo {
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
 }
