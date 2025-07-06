@@ -5,21 +5,6 @@ let mouseX = 0,
   mouseY = 0
 const THREE = window.THREE // Declare the THREE variable
 
-// Firebase Configuration
-const firebaseConfig = {
-    apiKey: "your-api-key",
-    authDomain: "ipportfolio-3286c.firebaseapp.com",
-    databaseURL: "https://ipportfolio-3286c-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "ipportfolio-3286c",
-    storageBucket: "ipportfolio-3286c.appspot.com",
-    messagingSenderId: "your-messaging-sender-id",
-    appId: "your-app-id"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-
 // Theme Management
 class ThemeManager {
   constructor() {
@@ -226,13 +211,11 @@ class RobotHead3D {
     scene.add(robotHead)
   }
 
-   onMouseMove(event) {
-       // Normalize mouse coordinates to [-1, 1]
-       mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-       // Invert Y-axis for correct up/down movement
-       mouseY = -((event.clientY / window.innerHeight) * 2 - 1);
+  onMouseMove(event) {
+    mouseX = (event.clientX / window.innerWidth) * 2 - 1
+    mouseY = -(event.clientY / window.innerHeight) * 2 + 1
   }
-    
+
   animate() {
     requestAnimationFrame(this.animate.bind(this))
 
