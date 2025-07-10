@@ -78,13 +78,16 @@ ficram-portfolio/
 python -m http.server 8000
 # Buka: http://localhost:8000
 ```
+---
 
 ## 🌐 Deploy ke GitHub Pages:
 Settings → Pages → Source → main / root → Save
+
 ---
 ##  🎨 Kustomisasi
 Ubah warna & tema: style.css
 Update konten: index.html
+
 ---
 ## Ganti warna robot: main.js
 ```
@@ -97,11 +100,13 @@ const headMaterial = new THREE.MeshPhongMaterial({ color: 0x667eea, shininess: 1
 Semantic HTML, alt text, lazy load
 Responsive images & minimal dependency
 Fast load & mobile-friendly
+
 ---
 ## 🔄 Versi
 Versi	Fitur Utama
 v2.0	🤖 Robot 3D, My Approach, Testimonials, Resume button, update Focus Section
 v1.0	🌓 Dark/Light mode, 🚀 Rocket scroll-to-top, responsive design, AOS animation
+
 ---
 ## 🤝 Contributing
 Fork repo
@@ -109,9 +114,11 @@ git checkout -b feature/AmazingFeature
 Commit perubahan
 git push origin feature/AmazingFeature
 Buka Pull Request
+
 ---
 ## 📄 License
 MIT License – lihat file LICENSE
+
 ---
 ## 📞 Contact
 📧 Email: ficramm@gmail.com
@@ -119,16 +126,19 @@ MIT License – lihat file LICENSE
 🐙 GitHub: github.com/ficrammanifur
 📸 Instagram: @ficrammanifur
 📱 WhatsApp: +62 823-1136-3925
+
 ---
-## 🙏 Acknowledgments
+🙏 Acknowledgments
 Three.js
 AOS.js
 Font Awesome
 Google Fonts
 GitHub Pages
+
 ---
-🚀 Live Demo
+## 🚀 Live Demo
 ✨ Lihat demo langsung – buka bagian projects »
+
 ---
 ```⭐ Star repo ini jika bermanfaat!
 git clone https://github.com/ficrammanifur/ficram-portfolio.git
