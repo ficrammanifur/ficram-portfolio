@@ -1,68 +1,53 @@
-# 🚀 Personal Portfolio - Ficram Manifur Farissa
+# 🚀 Personal Portfolio – Ficram Manifur Farissa
 
-Website portfolio pribadi yang menampilkan profil, keahlian, proyek, dan pendekatan kerja Ficram Manifur Farissa — mahasiswa Teknik Elektro yang fokus pada AI, IoT, Flutter, dan Flask backend.
+Website portfolio pribadi yang menampilkan profil, keahlian, proyek, dan pendekatan kerja Ficram Manifur Farissa — mahasiswa Teknik Elektro fokus AI, IoT, Flutter, dan Flask backend.
 
-![Portfolio Preview](https://img.shields.io/badge/Status-Live-brightgreen) ![Version](https://img.shields.io/badge/Version-2.0-blue) ![License](https://img.shields.io/badge/License-MIT-yellow)
+![Status](https://img.shields.io/badge/Status-Live-brightgreen) 
+![Version](https://img.shields.io/badge/Version-2.0-blue)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ---
 
 ## ✨ Fitur Terbaru (v2.0)
 
-### 🤖 3D Interactive Robot Head
-- Dibuat dengan Three.js
-- Mengikuti pergerakan mouse cursor secara real-time
-- Animasi floating futuristik
-
-### 🛠️ My Approach Section
-- Menjelaskan filosofi & metodologi kerja
-- Pendekatan eksperimen cepat & pembelajaran berkelanjutan
-
-### 🎯 Updated Focus Section
-- Konten lebih spesifik tentang robotik & IoT
-- Teknologi detail: MQTT, Cloud deployment, dsb
-
-### 💬 Interactive Testimonial System
-- Form validasi lengkap (nama, email, posisi, pesan)
-- Penyimpanan lokal (localStorage)
-- Kartu testimonial & notifikasi sukses
-
-### 📄 Download Resume Feature
-- Tombol resume dengan styling konsisten
-- Alert status development
+- 🤖 **3D Interactive Robot Head** – Three.js, floating, responsive, follow cursor.
+- 🛠️ **My Approach Section** – Filosofi & metodologi kerja, learning by building.
+- 🎯 **Updated Focus Section** – Lebih spesifik ke robot & IoT (MQTT, Cloud).
+- 💬 **Interactive Testimonials** – Form validasi, localStorage, kartu testimoni.
+- 📄 **Download Resume** – Tombol download, alert status development.
 
 ---
 
-## 🎨 Fitur Utama
+## 🌙 Fitur Utama
 
-- 🌓 Dark/Light mode dengan animasi smooth & localStorage
-- 🚀 Rocket scroll-to-top + particle effect
-- 📱 Responsive design: desktop, tablet, mobile
+- 🌓 Dark/Light mode toggle (localStorage)
+- 🚀 Scroll-to-top rocket + particle effect
+- 📱 Fully responsive design
 - ✨ Smooth scroll & AOS animation
 
 ---
 
-## 📋 Sections
+## 📁 Sections
 
-1. 🏠 Hero Section
-2. 👨‍💻 About Me
-3. 🛠️ My Approach
-4. 🎯 Focus Saat Ini
-5. 🔧 Skills
-6. 🚀 Life Motto
-7. 📁 Projects Portfolio
-8. 💬 Testimonials
+- 🏠 Hero Section – 3D robot + intro + CTA
+- 👨‍💻 About Me – Profil & stats
+- 🛠️ My Approach – Filosofi kerja
+- 🎯 Focus Saat Ini – Teknologi & projek terbaru
+- 🔧 Skills – Tools, language, framework
+- 🚀 Life Motto – Quotes & gradient
+- 📁 Projects – Showcase & tags
+- 💬 Testimonials – Interaktif form & kartu
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **HTML5**, **CSS3** (CSS Variables)
+- **HTML5**, **CSS3 (CSS Variables)**
 - **Vanilla JavaScript (ES6+)**
 - **Three.js** – 3D robot head
-- **AOS.js** – scroll animation
+- **AOS.js** – Scroll animations
 - **Font Awesome**, **Google Fonts**
 
-#### Libraries & CDN
 ```html
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -73,65 +58,51 @@ Website portfolio pribadi yang menampilkan profil, keahlian, proyek, dan pendeka
 <!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
+```
 🚀 Quick Start
-# Clone project
+```
 git clone https://github.com/ficrammanifur/ficram-portfolio.git
 cd ficram-portfolio
+```
 
-Struktur file
+📂 Struktur file:
 ficram-portfolio/
 ├── index.html
 ├── style.css
 ├── main.js
 ├── README.md
 └── assets/
-Jalankan lokal
+
+⚙ Jalankan lokal:
+```
 python -m http.server 8000
 # Buka: http://localhost:8000
-Deploy ke GitHub Pages
-Push ke repository
+```
 
-Settings > Pages > Source: Deploy from a branch > main
-
-Tunggu deploy selesai
+🌐 Deploy ke GitHub Pages:
+Settings → Pages → Source → main / root → Save
 
 🎨 Kustomisasi
-Ubah CSS variables di style.css
+Ubah warna & tema: style.css
 
-Update konten di index.html
+Update konten: index.html
 
-Ganti warna robot: di main.js
+Ganti warna robot: main.js
 const headMaterial = new THREE.MeshPhongMaterial({ color: 0x667eea, shininess: 100 });
 📱 Browser Support
-✅ Chrome, Firefox, Safari, Edge, Mobile browsers
+✅ Chrome, Firefox, Safari, Edge, Mobile browser
 
 📊 SEO & Performance
-Semantic HTML
+Semantic HTML, alt text, lazy load
 
-Alt text images
+Responsive images & minimal dependency
 
-Lazy load
-
-Responsive images
-
-Fast load & minimal dependency
+Fast load & mobile-friendly
 
 🔄 Versi
-v2.0
-✨ Robot 3D
-
-✨ My Approach
-
-✨ Testimonials
-
-🐛 Bugfix CSS
-
-v1.0
-🌓 Dark/Light mode
-
-🚀 Scroll-to-top rocket
-
-📱 Responsive design
+Versi	Fitur
+v2.0	3D robot head, My Approach, Testimonials, Download resume
+v1.0	Dark/Light mode, Scroll-to-top rocket, Responsive, AOS
 
 🤝 Contributing
 Fork
@@ -143,7 +114,7 @@ Commit & push
 Open Pull Request
 
 📄 License
-MIT License – LICENSE
+MIT License – lihat file LICENSE
 
 📞 Contact
 📧 ficramm@gmail.com
@@ -157,24 +128,14 @@ MIT License – LICENSE
 📱 WhatsApp
 
 🙏 Acknowledgments
-Three.js
-
-AOS.js
-
-Font Awesome
-
-Google Fonts
-
-GitHub Pages
-
-Made with ❤️ by Ficram Manifur Farissa
-"I always tell myself — it's not hard, it's just new."
+Three.js, AOS.js, Font Awesome, Google Fonts, GitHub Pages
 
 🚀 Live Demo
-✨ Lihat demo langsung di bagian projects »
+✨ Lihat demo langsung – buka section projects »
 
-⭐ Star repo ini jika membantu!
-
+⭐ Star repo ini kalau bermanfaat!
+```
 git clone https://github.com/ficrammanifur/ficram-portfolio.git
-
-
+```
+Made with ❤️ by Ficram Manifur Farissa
+"I always tell myself — it's not hard, it's just new."
