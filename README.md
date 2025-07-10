@@ -4,272 +4,177 @@ Website portfolio pribadi yang menampilkan profil, keahlian, proyek, dan pendeka
 
 ![Portfolio Preview](https://img.shields.io/badge/Status-Live-brightgreen) ![Version](https://img.shields.io/badge/Version-2.0-blue) ![License](https://img.shields.io/badge/License-MIT-yellow)
 
+---
+
 ## ✨ Fitur Terbaru (v2.0)
 
-### 🤖 **3D Interactive Robot Head**
-- Robot head 3D yang dibuat dengan Three.js
+### 🤖 3D Interactive Robot Head
+- Dibuat dengan Three.js
 - Mengikuti pergerakan mouse cursor secara real-time
-- Animasi floating yang halus dan natural
-- Desain futuristik dengan material metalik dan lighting effects
+- Animasi floating futuristik
 
-### 🛠️ **My Approach Section**
-- Section baru yang menjelaskan filosofi dan metodologi kerja
-- Pendekatan eksperimen cepat dan pembelajaran berkelanjutan
-- Fokus pada implementasi praktis dari teori
+### 🛠️ My Approach Section
+- Menjelaskan filosofi & metodologi kerja
+- Pendekatan eksperimen cepat & pembelajaran berkelanjutan
 
-### 🎯 **Updated Focus Section**
-- Konten yang lebih spesifik dan personal
-- Fokus pada pengembangan prototipe robot dan IoT
-- Detail teknologi yang sedang dipelajari (MQTT, Cloud deployment, dll)
+### 🎯 Updated Focus Section
+- Konten lebih spesifik tentang robotik & IoT
+- Teknologi detail: MQTT, Cloud deployment, dsb
 
-### 💬 **Interactive Testimonial System**
-- Menggantikan contact form dengan sistem testimonial
+### 💬 Interactive Testimonial System
 - Form validasi lengkap (nama, email, posisi, pesan)
-- Penyimpanan lokal dengan localStorage
-- Tampilan kartu testimonial dengan avatar inisial
-- Notifikasi sukses setelah submit
+- Penyimpanan lokal (localStorage)
+- Kartu testimonial & notifikasi sukses
 
-### 📄 **Download Resume Feature**
-- Tombol download resume dengan styling konsisten
-- Alert message untuk status development
+### 📄 Download Resume Feature
+- Tombol resume dengan styling konsisten
+- Alert status development
+
+---
 
 ## 🎨 Fitur Utama
 
-### 🌓 **Dark/Light Mode**
-- Toggle theme dengan animasi smooth
-- Persistent theme selection (localStorage)
-- Automatic icon switching
+- 🌓 Dark/Light mode dengan animasi smooth & localStorage
+- 🚀 Rocket scroll-to-top + particle effect
+- 📱 Responsive design: desktop, tablet, mobile
+- ✨ Smooth scroll & AOS animation
 
-### 🚀 **Rocket Scroll-to-Top**
-- Tombol rocket dengan animasi launch
-- Particle effects saat diklik
-- Hover effects dengan trail animation
-- Responsive design untuk mobile
-
-### 📱 **Responsive Design**
-- Optimal di semua perangkat (desktop, tablet, mobile)
-- Hamburger menu untuk mobile navigation
-- Adaptive grid layouts
-
-### ✨ **Smooth Animations**
-- AOS (Animate On Scroll) integration
-- Hover effects pada cards dan buttons
-- Smooth scrolling navigation
-- Loading animations
+---
 
 ## 📋 Sections
 
-1. **🏠 Hero Section**
-   - Interactive 3D robot head
-   - Personal introduction
-   - Call-to-action buttons
-   - Floating tech icons
+1. 🏠 Hero Section
+2. 👨‍💻 About Me
+3. 🛠️ My Approach
+4. 🎯 Focus Saat Ini
+5. 🔧 Skills
+6. 🚀 Life Motto
+7. 📁 Projects Portfolio
+8. 💬 Testimonials
 
-2. **👨‍💻 About Me**
-   - Personal background
-   - Statistics (projects, experience, technologies)
-   - Educational focus
-
-3. **🛠️ My Approach**
-   - Work philosophy
-   - Methodology explanation
-   - Learning approach
-
-4. **🎯 Focus Saat Ini**
-   - Current learning areas
-   - Specific technologies being explored
-   - Project types being developed
-
-5. **🔧 Skills**
-   - Programming languages
-   - Frameworks & libraries
-   - Tools & technologies
-
-6. **🚀 Life Motto**
-   - Personal philosophy
-   - Motivational quote
-   - Gradient background design
-
-7. **📁 Projects Portfolio**
-   - Featured projects showcase
-   - Technology tags
-   - Live demo links
-
-8. **💬 Testimonials**
-   - Interactive testimonial form
-   - Real-time testimonial display
-   - Local storage persistence
+---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- **HTML5**: Semantic structure
-- **CSS3**: Modern styling with CSS Variables
-- **Vanilla JavaScript**: ES6+ classes and modules
-- **Three.js**: 3D graphics for robot head
-- **AOS.js**: Scroll animations
-- **Font Awesome**: Icon library
-- **Google Fonts**: Poppins typography
+- **HTML5**, **CSS3** (CSS Variables)
+- **Vanilla JavaScript (ES6+)**
+- **Three.js** – 3D robot head
+- **AOS.js** – scroll animation
+- **Font Awesome**, **Google Fonts**
 
-### Libraries & CDN
-\`\`\`html
+#### Libraries & CDN
+```html
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 <!-- AOS Animation -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
 <!-- Three.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-\`\`\`
 
-## 🚀 Quick Start
-
-### 1. Clone Repository
-\`\`\`bash
+🚀 Quick Start
+# Clone project
 git clone https://github.com/ficrammanifur/ficram-portfolio.git
 cd ficram-portfolio
-\`\`\`
 
-### 2. File Structure
-\`\`\`
+Struktur file
 ficram-portfolio/
-├── index.html          # Main HTML file
-├── style.css           # Styling dan theming
-├── main.js            # JavaScript functionality
-├── README.md          # Documentation
-└── assets/            # Images and media (optional)
-\`\`\`
-
-### 3. Local Development
-\`\`\`bash
-# Using Live Server (VS Code extension)
-# Or any local server
+├── index.html
+├── style.css
+├── main.js
+├── README.md
+└── assets/
+Jalankan lokal
 python -m http.server 8000
-# Then open http://localhost:8000
-\`\`\`
+# Buka: http://localhost:8000
+Deploy ke GitHub Pages
+Push ke repository
 
-### 4. Deploy to GitHub Pages
-1. Push code to GitHub repository
-2. Go to **Settings** > **Pages**
-3. Source: **Deploy from a branch**
-4. Branch: **main** / **root**
-5. Save and wait for deployment
+Settings > Pages > Source: Deploy from a branch > main
 
-## 🎨 Customization
+Tunggu deploy selesai
 
-### Colors & Theming
-Edit CSS variables in `style.css`:
-\`\`\`css
-:root {
-  --primary-color: #667eea;      /* Main brand color */
-  --secondary-color: #764ba2;    /* Secondary brand color */
-  --accent-color: #f093fb;       /* Accent color */
-  /* ... */
-}
-\`\`\`
+🎨 Kustomisasi
+Ubah CSS variables di style.css
 
-### Content Updates
-1. **Personal Information**: Update name, description, and contact details
-2. **Projects**: Add/modify projects in the projects section
-3. **Skills**: Update technology skills and tools
-4. **Social Links**: Update footer social media links
+Update konten di index.html
 
-### 3D Robot Customization
-Modify robot appearance in `main.js`:
-\`\`\`javascript
-// In RobotHead3D class, createRobotHead method
-const headMaterial = new THREE.MeshPhongMaterial({ 
-  color: 0x667eea,  // Change robot color
-  shininess: 100
-})
-\`\`\`
+Ganti warna robot: di main.js
+const headMaterial = new THREE.MeshPhongMaterial({ color: 0x667eea, shininess: 100 });
+📱 Browser Support
+✅ Chrome, Firefox, Safari, Edge, Mobile browsers
 
-## 📱 Browser Support
+📊 SEO & Performance
+Semantic HTML
 
-- ✅ Chrome (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Edge (latest)
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
+Alt text images
 
-## 🔧 Performance Features
+Lazy load
 
-- **Lazy Loading**: Images load when needed
-- **Font Preloading**: Critical fonts preloaded
-- **Optimized Animations**: Hardware-accelerated CSS animations
-- **Responsive Images**: Adaptive image sizing
-- **Minimal Dependencies**: Lightweight external libraries
+Responsive images
 
-## 📊 SEO Optimization
+Fast load & minimal dependency
 
-- ✅ Semantic HTML structure
-- ✅ Meta tags for social sharing
-- ✅ Alt text for images
-- ✅ Fast loading performance
-- ✅ Mobile-friendly design
-- ✅ Structured data ready
+🔄 Versi
+v2.0
+✨ Robot 3D
 
-## 🔄 Version History
+✨ My Approach
 
-### v2.0 (Current)
-- ✨ Added 3D interactive robot head
-- ✨ New "My Approach" section
-- ✨ Updated "Focus Saat Ini" content
-- ✨ Testimonial system replacing contact form
-- ✨ Download resume button
-- 🐛 Fixed CSS class naming bugs
+✨ Testimonials
 
-### v1.0
-- 🎉 Initial release
-- 🌓 Dark/light mode toggle
-- 🚀 Rocket scroll-to-top button
-- 📱 Responsive design
-- ✨ AOS animations
+🐛 Bugfix CSS
 
-## 🤝 Contributing
+v1.0
+🌓 Dark/Light mode
 
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+🚀 Scroll-to-top rocket
 
-## 📄 License
+📱 Responsive design
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+🤝 Contributing
+Fork
 
-## 📞 Contact & Support
+git checkout -b feature/AmazingFeature
 
-- **Email**: ficramm@gmail.com
-- **LinkedIn**: [linkedin.com/in/ficram-manifur](https://linkedin.com/in/ficram-manifur)
-- **GitHub**: [github.com/ficrammanifur](https://github.com/ficrammanifur)
-- **Instagram**: [@ficrammanifur](https://instagram.com/ficrammanifur)
-- **WhatsApp**: [+62 823-1136-3925](https://wa.me/6282311363925)
+Commit & push
 
-## 🙏 Acknowledgments
+Open Pull Request
 
-- **Three.js** for 3D graphics capabilities
-- **AOS.js** for smooth scroll animations
-- **Font Awesome** for beautiful icons
-- **Google Fonts** for typography
-- **GitHub Pages** for free hosting
+📄 License
+MIT License – LICENSE
 
----
+📞 Contact
+📧 ficramm@gmail.com
 
-**Made with ❤️ by Ficram Manifur Farissa**
+💼 LinkedIn
 
-*"I always tell myself — it's not hard, it's just new."*
+🐙 GitHub
 
----
+📸 Instagram
 
-### 🚀 Live Demo
-Visit the live website: [https://ficrammanifur.github.io/ficram-portfolio/](https://ficrammanifur.github.io/ficram-portfolio/)
+📱 WhatsApp
 
-### ⭐ Star this repo if you found it helpful!
-\`\`\`bash
-# Clone and customize for your own portfolio
+🙏 Acknowledgments
+Three.js
+
+AOS.js
+
+Font Awesome
+
+Google Fonts
+
+GitHub Pages
+
+Made with ❤️ by Ficram Manifur Farissa
+"I always tell myself — it's not hard, it's just new."
+
+🚀 Live Demo
+✨ Lihat demo langsung di bagian projects »
+
+⭐ Star repo ini jika membantu!
+
 git clone https://github.com/ficrammanifur/ficram-portfolio.git
+
+
