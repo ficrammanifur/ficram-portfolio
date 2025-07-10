@@ -121,11 +121,13 @@ MIT License – lihat file LICENSE
 
 ---
 ## 📞 Contact
+```
 📧 Email: ficramm@gmail.com
 💼 LinkedIn: linkedin.com/in/ficram-manifur
 🐙 GitHub: github.com/ficrammanifur
 📸 Instagram: @ficrammanifur
 📱 WhatsApp: +62 823-1136-3925
+```
 
 ---
 🙏 Acknowledgments
