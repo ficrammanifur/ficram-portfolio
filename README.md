@@ -100,42 +100,47 @@ Responsive images & minimal dependency
 Fast load & mobile-friendly
 
 🔄 Versi
-Versi	Fitur
-v2.0	3D robot head, My Approach, Testimonials, Download resume
-v1.0	Dark/Light mode, Scroll-to-top rocket, Responsive, AOS
+Versi	Fitur Utama
+v2.0	🤖 Robot 3D, My Approach, Testimonials, Resume button, update Focus Section
+v1.0	🌓 Dark/Light mode, 🚀 Rocket scroll-to-top, responsive design, AOS animation
 
 🤝 Contributing
-Fork
+Fork repo
 
 git checkout -b feature/AmazingFeature
 
-Commit & push
+Commit perubahan
 
-Open Pull Request
+git push origin feature/AmazingFeature
+
+Buka Pull Request
 
 📄 License
 MIT License – lihat file LICENSE
 
 📞 Contact
-📧 ficramm@gmail.com
+📧 Email: ficramm@gmail.com
 
-💼 LinkedIn
+💼 LinkedIn: linkedin.com/in/ficram-manifur
 
-🐙 GitHub
+🐙 GitHub: github.com/ficrammanifur
 
-📸 Instagram
+📸 Instagram: @ficrammanifur
 
-📱 WhatsApp
+📱 WhatsApp: +62 823-1136-3925
 
 🙏 Acknowledgments
-Three.js, AOS.js, Font Awesome, Google Fonts, GitHub Pages
+Three.js
+
+AOS.js
+
+Font Awesome
+
+Google Fonts
+
+GitHub Pages
 
 🚀 Live Demo
-✨ Lihat demo langsung – buka section projects »
+✨ Lihat demo langsung – buka bagian projects »
 
-⭐ Star repo ini kalau bermanfaat!
-```
-git clone https://github.com/ficrammanifur/ficram-portfolio.git
-```
-Made with ❤️ by Ficram Manifur Farissa
-"I always tell myself — it's not hard, it's just new."
+⭐ Star repo ini jika bermanfaat!
