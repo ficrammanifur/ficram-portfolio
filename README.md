@@ -59,88 +59,80 @@ Website portfolio pribadi yang menampilkan profil, keahlian, proyek, dan pendeka
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 ```
-🚀 Quick Start
-```
+
+```🚀 Quick Start
 git clone https://github.com/ficrammanifur/ficram-portfolio.git
 cd ficram-portfolio
 ```
 
-📂 Struktur file:
+```📂 Struktur file:
 ficram-portfolio/
 ├── index.html
 ├── style.css
 ├── main.js
 ├── README.md
 └── assets/
-
-⚙ Jalankan lokal:
 ```
+
+```⚙ Jalankan lokal:
 python -m http.server 8000
 # Buka: http://localhost:8000
 ```
 
-🌐 Deploy ke GitHub Pages:
+## 🌐 Deploy ke GitHub Pages:
 Settings → Pages → Source → main / root → Save
-
-🎨 Kustomisasi
+---
+##  🎨 Kustomisasi
 Ubah warna & tema: style.css
-
 Update konten: index.html
-
-Ganti warna robot: main.js
+---
+## Ganti warna robot: main.js
+```
 const headMaterial = new THREE.MeshPhongMaterial({ color: 0x667eea, shininess: 100 });
 📱 Browser Support
 ✅ Chrome, Firefox, Safari, Edge, Mobile browser
-
-📊 SEO & Performance
+```
+---
+## 📊 SEO & Performance
 Semantic HTML, alt text, lazy load
-
 Responsive images & minimal dependency
-
 Fast load & mobile-friendly
-
-🔄 Versi
+---
+## 🔄 Versi
 Versi	Fitur Utama
 v2.0	🤖 Robot 3D, My Approach, Testimonials, Resume button, update Focus Section
 v1.0	🌓 Dark/Light mode, 🚀 Rocket scroll-to-top, responsive design, AOS animation
-
-🤝 Contributing
+---
+## 🤝 Contributing
 Fork repo
-
 git checkout -b feature/AmazingFeature
-
 Commit perubahan
-
 git push origin feature/AmazingFeature
-
 Buka Pull Request
-
-📄 License
+---
+## 📄 License
 MIT License – lihat file LICENSE
-
-📞 Contact
+---
+## 📞 Contact
 📧 Email: ficramm@gmail.com
-
 💼 LinkedIn: linkedin.com/in/ficram-manifur
-
 🐙 GitHub: github.com/ficrammanifur
-
 📸 Instagram: @ficrammanifur
-
 📱 WhatsApp: +62 823-1136-3925
-
-🙏 Acknowledgments
+---
+## 🙏 Acknowledgments
 Three.js
-
 AOS.js
-
 Font Awesome
-
 Google Fonts
-
 GitHub Pages
-
+---
 🚀 Live Demo
 ✨ Lihat demo langsung – buka bagian projects »
+---
+```⭐ Star repo ini jika bermanfaat!
+git clone https://github.com/ficrammanifur/ficram-portfolio.git
+```
 
-⭐ Star repo ini jika bermanfaat!
+Made with ❤️ by Ficram Manifur Farissa
+"I always tell myself — it's not hard, it's just new."
