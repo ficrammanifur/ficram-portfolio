@@ -1071,7 +1071,35 @@
         .rocket-btn:hover i {
           color: #ff6b6b;
         }
+        
+        /* Custom Cursor */
+        .custom-cursor {
+          position: fixed;
+          width: 20px;
+          height: 20px;
+          background: radial-gradient(circle, rgba(102, 126, 234, 0.5) 20%, transparent 70%);
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 9999;
+          transform: translate(-50%, -50%);
+          transition: transform 0.1s ease, opacity 0.3s ease;
+        }
 
+        .custom-cursor.active {
+          transform: translate(-50%, -50%) scale(1.5);
+          background: radial-gradient(circle, rgba(240, 147, 251, 0.7) 20%, transparent 70%);
+        }
+
+        .cursor-trail {
+          position: fixed;
+          width: 8px;
+          height: 8px;
+          background: rgba(102, 126, 234, 0.3);
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 9998;
+          transition: all 0.2s ease;
+        }
         /* Responsive rocket button */
         @media (max-width: 768px) {
           .rocket-btn {
@@ -1349,8 +1377,7 @@
                 <div class="skills-category" data-aos="fade-up">
                     <h3>Frameworks & Libraries</h3>
                     <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-flutter"></i>
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/flutter.svg" alt="Flutter Logo">
                             <span>Flutter</span>
                         </div>
                         <div class="skill-item">
@@ -1384,8 +1411,8 @@
                             <span>Arduino</span>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-raspberry-pi"></i>
-                            <span>Raspberry Pi</span>
+                            <i class="fas fa-microchip"></i>
+                            <span>ESP32</span>
                         </div>
                     </div>
                 </div>
