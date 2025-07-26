@@ -6,7 +6,7 @@ let mouseX = 0,
 const THREE = window.THREE
 
 // Backend API Configuration - Update dengan URL Railway yang benar
-const API_BASE_URL = "https://railwayyweb-production-ac1c.up.railway.app"
+const API_BASE_URL = "https://web-production-ac1c.up.railway.app"
 
 // Theme Management
 class ThemeManager {
@@ -254,7 +254,9 @@ class RobotHead3D {
   }
 
   onMouseMove(event) {
+    // mouseX: -1 (left) to 1 (right)
     mouseX = (event.clientX / window.innerWidth) * 2 - 1
+    // mouseY: 1 (top) to -1 (bottom)
     mouseY = -(event.clientY / window.innerHeight) * 2 + 1
   }
 
@@ -266,16 +268,15 @@ class RobotHead3D {
       robotHead.rotation.y += (mouseX * 0.2 - robotHead.rotation.y) * 0.05
       robotHead.rotation.x += (-mouseY * 0.1 - robotHead.rotation.x) * 0.05
 
-      // Eye tracking - pupils follow cursor
+      // Eye tracking - pupils follow cursor (inverted Y for desired effect)
       if (this.leftPupil && this.rightPupil) {
-        // Calculate pupil movement within eye bounds
         const pupilRange = 0.1
-
+        // Invert mouseY effect for vertical movement
+        this.leftPupil.position.y = 0.2 - mouseY * pupilRange
+        this.rightPupil.position.y = 0.2 - mouseY * pupilRange
+        // X movement remains the same
         this.leftPupil.position.x = -0.4 + mouseX * pupilRange
-        this.leftPupil.position.y = 0.2 + mouseY * pupilRange // Hapus tanda minus
-
         this.rightPupil.position.x = 0.4 + mouseX * pupilRange
-        this.rightPupil.position.y = 0.2 + mouseY * pupilRange // Hapus tanda minus
       }
 
       // Gentle floating animation
@@ -634,7 +635,7 @@ class ScrollEffects {
         border-radius: 50%;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); /* Initial centering */
         animation: rocketParticleFixed 1s ease-out forwards;
         animation-delay: ${i * 0.1}s;
       `
