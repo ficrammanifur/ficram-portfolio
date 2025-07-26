@@ -3,10 +3,10 @@ const testimonials = []
 let scene, camera, renderer, robotHead
 let mouseX = 0,
   mouseY = 0
-const THREE = window.THREE // Declare the THREE variable
+const THREE = window.THREE
 
-// Backend API Configuration
-const API_BASE_URL = "https://web-production-ac1c.up.railway.app/" // Replace with your Railway URL
+// Backend API Configuration - Update dengan URL Railway yang benar
+const API_BASE_URL = "https://railwayyweb-production-ac1c.up.railway.app"
 
 // Theme Management
 class ThemeManager {
@@ -112,7 +112,7 @@ class NavigationManager {
   }
 }
 
-// 3D Robot Head
+// Enhanced 3D Robot Head with Ball Shape and Eye Tracking
 class RobotHead3D {
   constructor() {
     this.init()
@@ -145,32 +145,66 @@ class RobotHead3D {
   createRobotHead() {
     const group = new THREE.Group()
 
-    // Head (main cube)
-    const headGeometry = new THREE.BoxGeometry(2, 2, 2)
+    // Head (sphere instead of cube)
+    const headGeometry = new THREE.SphereGeometry(1.2, 32, 32)
     const headMaterial = new THREE.MeshPhongMaterial({
       color: 0x667eea,
       shininess: 100,
+      transparent: true,
+      opacity: 0.9,
     })
     const head = new THREE.Mesh(headGeometry, headMaterial)
     group.add(head)
 
-    // Eyes
+    // Eye sockets (darker areas)
+    const eyeSocketGeometry = new THREE.SphereGeometry(0.25, 16, 16)
+    const eyeSocketMaterial = new THREE.MeshPhongMaterial({
+      color: 0x2d3748,
+      transparent: true,
+      opacity: 0.8,
+    })
+
+    const leftEyeSocket = new THREE.Mesh(eyeSocketGeometry, eyeSocketMaterial)
+    leftEyeSocket.position.set(-0.4, 0.2, 1.0)
+    group.add(leftEyeSocket)
+
+    const rightEyeSocket = new THREE.Mesh(eyeSocketGeometry, eyeSocketMaterial)
+    rightEyeSocket.position.set(0.4, 0.2, 1.0)
+    group.add(rightEyeSocket)
+
+    // Eyes (white spheres)
     const eyeGeometry = new THREE.SphereGeometry(0.2, 16, 16)
-    const eyeMaterial = new THREE.MeshPhongMaterial({ color: 0x00ffff, emissive: 0x004444 })
+    const eyeMaterial = new THREE.MeshPhongMaterial({
+      color: 0xffffff,
+      shininess: 50,
+    })
 
-    const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial)
-    leftEye.position.set(-0.4, 0.3, 1.1)
-    group.add(leftEye)
+    this.leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial)
+    this.leftEye.position.set(-0.4, 0.2, 1.1)
+    group.add(this.leftEye)
 
-    const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial)
-    rightEye.position.set(0.4, 0.3, 1.1)
-    group.add(rightEye)
+    this.rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial)
+    this.rightEye.position.set(0.4, 0.2, 1.1)
+    group.add(this.rightEye)
 
-    // Mouth
-    const mouthGeometry = new THREE.BoxGeometry(0.8, 0.1, 0.1)
+    // Pupils (small black spheres that will follow cursor)
+    const pupilGeometry = new THREE.SphereGeometry(0.08, 8, 8)
+    const pupilMaterial = new THREE.MeshPhongMaterial({ color: 0x000000 })
+
+    this.leftPupil = new THREE.Mesh(pupilGeometry, pupilMaterial)
+    this.leftPupil.position.set(-0.4, 0.2, 1.2)
+    group.add(this.leftPupil)
+
+    this.rightPupil = new THREE.Mesh(pupilGeometry, pupilMaterial)
+    this.rightPupil.position.set(0.4, 0.2, 1.2)
+    group.add(this.rightPupil)
+
+    // Mouth (curved line)
+    const mouthGeometry = new THREE.TorusGeometry(0.3, 0.03, 8, 16, Math.PI)
     const mouthMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 })
     const mouth = new THREE.Mesh(mouthGeometry, mouthMaterial)
     mouth.position.set(0, -0.3, 1.1)
+    mouth.rotation.z = Math.PI
     group.add(mouth)
 
     // Antennas
@@ -178,24 +212,29 @@ class RobotHead3D {
     const antennaMaterial = new THREE.MeshPhongMaterial({ color: 0x764ba2 })
 
     const leftAntenna = new THREE.Mesh(antennaGeometry, antennaMaterial)
-    leftAntenna.position.set(-0.5, 1.25, 0)
+    leftAntenna.position.set(-0.5, 1.5, 0)
     group.add(leftAntenna)
 
     const rightAntenna = new THREE.Mesh(antennaGeometry, antennaMaterial)
-    rightAntenna.position.set(0.5, 1.25, 0)
+    rightAntenna.position.set(0.5, 1.5, 0)
     group.add(rightAntenna)
 
-    // Antenna tips
+    // Antenna tips (glowing spheres)
     const tipGeometry = new THREE.SphereGeometry(0.08, 8, 8)
-    const tipMaterial = new THREE.MeshPhongMaterial({ color: 0xff6b6b, emissive: 0x441111 })
+    const tipMaterial = new THREE.MeshPhongMaterial({
+      color: 0xff6b6b,
+      emissive: 0x441111,
+      transparent: true,
+      opacity: 0.9,
+    })
 
-    const leftTip = new THREE.Mesh(tipGeometry, tipMaterial)
-    leftTip.position.set(-0.5, 1.5, 0)
-    group.add(leftTip)
+    this.leftTip = new THREE.Mesh(tipGeometry, tipMaterial)
+    this.leftTip.position.set(-0.5, 1.75, 0)
+    group.add(this.leftTip)
 
-    const rightTip = new THREE.Mesh(tipGeometry, tipMaterial)
-    rightTip.position.set(0.5, 1.5, 0)
-    group.add(rightTip)
+    this.rightTip = new THREE.Mesh(tipGeometry, tipMaterial)
+    this.rightTip.position.set(0.5, 1.75, 0)
+    group.add(this.rightTip)
 
     // Lighting
     const ambientLight = new THREE.AmbientLight(0x404040, 0.6)
@@ -204,6 +243,11 @@ class RobotHead3D {
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
     directionalLight.position.set(1, 1, 1)
     scene.add(directionalLight)
+
+    // Point light for glow effect
+    const pointLight = new THREE.PointLight(0x667eea, 0.5, 10)
+    pointLight.position.set(0, 0, 2)
+    scene.add(pointLight)
 
     robotHead = group
     scene.add(robotHead)
@@ -218,12 +262,31 @@ class RobotHead3D {
     requestAnimationFrame(this.animate.bind(this))
 
     if (robotHead) {
-      // Smooth rotation following mouse, with inverted Y-axis for correct orientation
-      robotHead.rotation.y += (mouseX * 0.3 - robotHead.rotation.y) * 0.05
-      robotHead.rotation.x += (-mouseY * 0.2 - robotHead.rotation.x) * 0.05
+      // Gentle head rotation following mouse
+      robotHead.rotation.y += (mouseX * 0.2 - robotHead.rotation.y) * 0.05
+      robotHead.rotation.x += (-mouseY * 0.1 - robotHead.rotation.x) * 0.05
+
+      // Eye tracking - pupils follow cursor
+      if (this.leftPupil && this.rightPupil) {
+        // Calculate pupil movement within eye bounds
+        const pupilRange = 0.1
+
+        this.leftPupil.position.x = -0.4 + mouseX * pupilRange
+        this.leftPupil.position.y = 0.2 + -mouseY * pupilRange
+
+        this.rightPupil.position.x = 0.4 + mouseX * pupilRange
+        this.rightPupil.position.y = 0.2 + -mouseY * pupilRange
+      }
 
       // Gentle floating animation
       robotHead.position.y = Math.sin(Date.now() * 0.001) * 0.1
+
+      // Antenna tip glow animation
+      if (this.leftTip && this.rightTip) {
+        const glowIntensity = (Math.sin(Date.now() * 0.003) + 1) * 0.5
+        this.leftTip.material.opacity = 0.7 + glowIntensity * 0.3
+        this.rightTip.material.opacity = 0.7 + glowIntensity * 0.3
+      }
     }
 
     renderer.render(scene, camera)
@@ -340,11 +403,13 @@ class TestimonialManager {
 
   async loadTestimonials() {
     try {
+      console.log("Loading testimonials from:", `${API_BASE_URL}/api/messages`)
       const response = await fetch(`${API_BASE_URL}/api/messages`)
       const result = await response.json()
 
       if (result.success) {
         this.displayTestimonials(result.messages)
+        console.log("Testimonials loaded successfully:", result.messages.length)
       } else {
         throw new Error("Failed to load messages")
       }
@@ -473,7 +538,7 @@ class ScrollEffects {
       visibility: hidden;
       z-index: 1000;
       filter: grayscale(100%);
-      transform: rotate(90deg);
+      transform: rotate(-45deg);
     `
 
     const rocketTrail = document.createElement("div")
@@ -519,14 +584,14 @@ class ScrollEffects {
     })
 
     scrollToTopBtn.addEventListener("mouseenter", () => {
-      scrollToTopBtn.style.transform = "translateY(-5px) rotate(90deg)"
+      scrollToTopBtn.style.transform = "translateY(-5px) rotate(-45deg)"
       scrollToTopBtn.style.filter = "grayscale(0%)"
       scrollToTopBtn.querySelector("i").style.color = "#ff6b6b"
     })
 
     scrollToTopBtn.addEventListener("mouseleave", () => {
       if (!scrollToTopBtn.classList.contains("active")) {
-        scrollToTopBtn.style.transform = "translateY(0) rotate(90deg)"
+        scrollToTopBtn.style.transform = "translateY(0) rotate(-45deg)"
         scrollToTopBtn.style.filter = "grayscale(100%)"
         scrollToTopBtn.querySelector("i").style.color = "#333"
         rocketTrail.style.height = "0px"
@@ -569,7 +634,7 @@ class ScrollEffects {
         border-radius: 50%;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%) rotate(90deg);
+        transform: translate(-50%, -50%) rotate(-45deg);
         animation: rocketParticle 1s ease-out forwards;
         animation-delay: ${i * 0.1}s;
       `
@@ -578,12 +643,12 @@ class ScrollEffects {
 
     document.body.appendChild(launchEffect)
     rocketBtn.style.transition = "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
-    rocketBtn.style.transform = "translateY(-100vh) rotate(90deg)"
+    rocketBtn.style.transform = "translateY(-100vh) rotate(-45deg)"
     rocketBtn.style.opacity = "0"
 
     setTimeout(() => {
       rocketBtn.style.transition = "all 0.3s ease"
-      rocketBtn.style.transform = "translateY(0) rotate(90deg)"
+      rocketBtn.style.transform = "translateY(0) rotate(-45deg)"
       rocketBtn.style.opacity = window.scrollY > 300 ? "1" : "0"
       rocketBtn.style.filter = "grayscale(100%)"
       rocketBtn.querySelector("i").style.color = "#333"
