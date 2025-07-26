@@ -1,9 +1,12 @@
 // Global variables
-let testimonials = []
+const testimonials = []
 let scene, camera, renderer, robotHead
 let mouseX = 0,
   mouseY = 0
 const THREE = window.THREE // Declare the THREE variable
+
+// Backend API Configuration
+const API_BASE_URL = "https://your-railway-app.railway.app" // Replace with your Railway URL
 
 // Theme Management
 class ThemeManager {
@@ -21,10 +24,8 @@ class ThemeManager {
     this.theme = theme
     document.documentElement.setAttribute("data-theme", theme)
     localStorage.setItem("theme", theme)
-
     const themeToggle = document.getElementById("theme-toggle")
     const icon = themeToggle.querySelector("i")
-
     if (theme === "dark") {
       icon.className = "fas fa-sun"
     } else {
@@ -60,13 +61,10 @@ class NavigationManager {
 
   bindEvents() {
     this.hamburger.addEventListener("click", () => this.toggleMobileMenu())
-
     this.navLinks.forEach((link) => {
       link.addEventListener("click", () => this.closeMobileMenu())
     })
-
     window.addEventListener("scroll", () => this.handleScroll())
-
     this.navLinks.forEach((link) => {
       link.addEventListener("click", (e) => this.smoothScroll(e))
     })
@@ -220,9 +218,9 @@ class RobotHead3D {
     requestAnimationFrame(this.animate.bind(this))
 
     if (robotHead) {
-      // Smooth rotation following mouse
+      // Smooth rotation following mouse, with inverted Y-axis for correct orientation
       robotHead.rotation.y += (mouseX * 0.3 - robotHead.rotation.y) * 0.05
-      robotHead.rotation.x += (mouseY * 0.2 - robotHead.rotation.x) * 0.05
+      robotHead.rotation.x += (-mouseY * 0.2 - robotHead.rotation.x) * 0.05
 
       // Gentle floating animation
       robotHead.position.y = Math.sin(Date.now() * 0.001) * 0.1
@@ -232,7 +230,7 @@ class RobotHead3D {
   }
 }
 
-// Testimonial Manager
+// Enhanced Testimonial Manager with Backend Integration
 class TestimonialManager {
   constructor() {
     this.form = document.getElementById("testimonial-form")
@@ -245,69 +243,134 @@ class TestimonialManager {
     this.loadTestimonials()
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault()
-
     const formData = new FormData(this.form)
     const testimonial = {
       fullName: formData.get("fullName"),
       email: formData.get("email"),
       position: formData.get("position"),
       message: formData.get("testimonialMessage"),
-      timestamp: new Date().toISOString(),
     }
 
     // Validation
     if (!testimonial.fullName || !testimonial.email || !testimonial.position || !testimonial.message) {
-      alert("Please fill in all fields before submitting.")
+      this.showNotification("Please fill in all fields before submitting.", "error")
       return
     }
 
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(testimonial.email)) {
-      alert("Please enter a valid email address.")
+      this.showNotification("Please enter a valid email address.", "error")
       return
     }
 
-    // Add to testimonials array
-    testimonials.unshift(testimonial)
+    try {
+      // Show loading state
+      const submitBtn = this.form.querySelector('button[type="submit"]')
+      const originalText = submitBtn.innerHTML
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...'
+      submitBtn.disabled = true
 
-    // Save to localStorage
-    localStorage.setItem("testimonials", JSON.stringify(testimonials))
+      // Send to backend
+      const response = await fetch(`${API_BASE_URL}/api/messages`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(testimonial),
+      })
 
-    // Display testimonials
-    this.displayTestimonials()
+      const result = await response.json()
 
-    // Reset form
-    this.form.reset()
+      if (result.success) {
+        // Reset form
+        this.form.reset()
 
-    // Show success message
-    this.showNotification("Thank you for your testimonial!", "success")
-  }
+        // Reload testimonials
+        await this.loadTestimonials()
 
-  loadTestimonials() {
-    const saved = localStorage.getItem("testimonials")
-    if (saved) {
-      testimonials = JSON.parse(saved)
+        // Show success message
+        this.showNotification("Thank you for your message!", "success")
+      } else {
+        throw new Error(result.error || "Failed to submit message")
+      }
+
+      // Reset button
+      submitBtn.innerHTML = originalText
+      submitBtn.disabled = false
+    } catch (error) {
+      console.error("Error submitting testimonial:", error)
+
+      // Fallback to localStorage if backend fails
+      this.handleLocalSubmit(testimonial)
+
+      // Reset button
+      const submitBtn = this.form.querySelector('button[type="submit"]')
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit'
+      submitBtn.disabled = false
+
+      this.showNotification("Message saved locally. Backend connection failed.", "warning")
     }
-    this.displayTestimonials()
   }
 
-  displayTestimonials() {
+  handleLocalSubmit(testimonial) {
+    // Fallback to local storage
+    const localTestimonials = JSON.parse(localStorage.getItem("testimonials") || "[]")
+
+    const newTestimonial = {
+      ...testimonial,
+      id: Date.now().toString(),
+      timestamp: new Date().toISOString(),
+      created_at: new Date().toLocaleString(),
+    }
+
+    localTestimonials.unshift(newTestimonial)
+
+    // Keep only latest 10
+    if (localTestimonials.length > 10) {
+      localTestimonials.splice(10)
+    }
+
+    localStorage.setItem("testimonials", JSON.stringify(localTestimonials))
+    this.form.reset()
+    this.displayTestimonials(localTestimonials)
+  }
+
+  async loadTestimonials() {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/messages`)
+      const result = await response.json()
+
+      if (result.success) {
+        this.displayTestimonials(result.messages)
+      } else {
+        throw new Error("Failed to load messages")
+      }
+    } catch (error) {
+      console.error("Error loading testimonials:", error)
+
+      // Fallback to localStorage
+      const localTestimonials = JSON.parse(localStorage.getItem("testimonials") || "[]")
+      this.displayTestimonials(localTestimonials)
+    }
+  }
+
+  displayTestimonials(testimonialsList) {
     this.testimonialsList.innerHTML = ""
 
-    if (testimonials.length === 0) {
+    if (testimonialsList.length === 0) {
       this.testimonialsList.innerHTML = `
         <div style="text-align: center; color: var(--text-muted); padding: 40px;">
           <i class="fas fa-comments" style="font-size: 48px; margin-bottom: 20px; opacity: 0.5;"></i>
-          <p>No testimonials yet. Be the first to share your experience!</p>
+          <p>No messages yet. Be the first to share your experience!</p>
         </div>
       `
       return
     }
 
-    testimonials.forEach((testimonial) => {
+    testimonialsList.forEach((testimonial) => {
       const card = document.createElement("div")
       card.className = "testimonial-card"
 
@@ -336,15 +399,14 @@ class TestimonialManager {
     const notification = document.createElement("div")
     notification.className = `notification ${type}`
     notification.innerHTML = `
-      <i class="fas ${type === "success" ? "fa-check-circle" : "fa-exclamation-circle"}"></i>
+      <i class="fas ${type === "success" ? "fa-check-circle" : type === "error" ? "fa-exclamation-circle" : "fa-exclamation-triangle"}"></i>
       <span>${message}</span>
     `
-
     notification.style.cssText = `
       position: fixed;
       top: 100px;
       right: 20px;
-      background: ${type === "success" ? "#48bb78" : "#f56565"};
+      background: ${type === "success" ? "#48bb78" : type === "error" ? "#f56565" : "#ed8936"};
       color: white;
       padding: 15px 20px;
       border-radius: 8px;
@@ -355,13 +417,14 @@ class TestimonialManager {
       gap: 10px;
       animation: slideIn 0.3s ease;
     `
-
     document.body.appendChild(notification)
 
     setTimeout(() => {
       notification.style.animation = "slideOut 0.3s ease"
       setTimeout(() => {
-        document.body.removeChild(notification)
+        if (document.body.contains(notification)) {
+          document.body.removeChild(notification)
+        }
       }, 300)
     }, 3000)
   }
@@ -401,51 +464,53 @@ class ScrollEffects {
       right: 30px;
       width: 60px;
       height: 60px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
+      background: none;
       border: none;
-      border-radius: 50%;
       cursor: pointer;
-      font-size: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      font-size: 24px;
       transition: all 0.3s ease;
       opacity: 0;
       visibility: hidden;
       z-index: 1000;
-      transform: rotate(-45deg);
+      filter: grayscale(100%);
+      transform: rotate(90deg);
     `
 
     const rocketTrail = document.createElement("div")
     rocketTrail.className = "rocket-trail"
     rocketTrail.style.cssText = `
       position: absolute;
-      bottom: -10px;
+      bottom: -20px;
       left: 50%;
       transform: translateX(-50%);
-      width: 3px;
-      height: 20px;
-      background: linear-gradient(to bottom, #ff6b6b, transparent);
-      border-radius: 2px;
+      width: 6px;
+      height: 0px;
+      background: linear-gradient(to bottom, #ff0000, transparent);
+      border-radius: 3px;
       opacity: 0;
       transition: all 0.3s ease;
     `
-    scrollToTopBtn.appendChild(rocketTrail)
 
+    scrollToTopBtn.appendChild(rocketTrail)
     document.body.appendChild(scrollToTopBtn)
 
     window.addEventListener("scroll", () => {
       if (window.scrollY > 300) {
         scrollToTopBtn.style.opacity = "1"
         scrollToTopBtn.style.visibility = "visible"
-        rocketTrail.style.opacity = "0.8"
       } else {
         scrollToTopBtn.style.opacity = "0"
         scrollToTopBtn.style.visibility = "hidden"
+        rocketTrail.style.height = "0px"
         rocketTrail.style.opacity = "0"
+        scrollToTopBtn.classList.remove("active")
       }
     })
 
     scrollToTopBtn.addEventListener("click", () => {
+      scrollToTopBtn.classList.add("active")
+      rocketTrail.style.height = "30px"
+      rocketTrail.style.opacity = "1"
       this.launchRocket(scrollToTopBtn)
       window.scrollTo({
         top: 0,
@@ -454,17 +519,30 @@ class ScrollEffects {
     })
 
     scrollToTopBtn.addEventListener("mouseenter", () => {
-      scrollToTopBtn.style.transform = "rotate(-45deg) translateY(-5px) scale(1.1)"
-      scrollToTopBtn.style.boxShadow = "0 8px 20px rgba(0,0,0,0.25)"
-      rocketTrail.style.height = "30px"
-      rocketTrail.style.opacity = "1"
+      scrollToTopBtn.style.transform = "translateY(-5px) rotate(90deg)"
+      scrollToTopBtn.style.filter = "grayscale(0%)"
+      scrollToTopBtn.querySelector("i").style.color = "#ff6b6b"
     })
 
     scrollToTopBtn.addEventListener("mouseleave", () => {
-      scrollToTopBtn.style.transform = "rotate(-45deg) translateY(0) scale(1)"
-      scrollToTopBtn.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)"
-      rocketTrail.style.height = "20px"
-      rocketTrail.style.opacity = "0.8"
+      if (!scrollToTopBtn.classList.contains("active")) {
+        scrollToTopBtn.style.transform = "translateY(0) rotate(90deg)"
+        scrollToTopBtn.style.filter = "grayscale(100%)"
+        scrollToTopBtn.querySelector("i").style.color = "#333"
+        rocketTrail.style.height = "0px"
+        rocketTrail.style.opacity = "0"
+      }
+    })
+
+    // Reset active state after scroll completes
+    window.addEventListener("scroll", () => {
+      if (window.scrollY === 0) {
+        scrollToTopBtn.classList.remove("active")
+        scrollToTopBtn.style.filter = "grayscale(100%)"
+        scrollToTopBtn.querySelector("i").style.color = "#333"
+        rocketTrail.style.height = "0px"
+        rocketTrail.style.opacity = "0"
+      }
     })
   }
 
@@ -487,11 +565,11 @@ class ScrollEffects {
         position: absolute;
         width: 4px;
         height: 4px;
-        background: ${i % 2 === 0 ? "#ff6b6b" : "#ffa500"};
+        background: ${i % 2 === 0 ? "#ff0000" : "#ffa500"};
         border-radius: 50%;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) rotate(90deg);
         animation: rocketParticle 1s ease-out forwards;
         animation-delay: ${i * 0.1}s;
       `
@@ -499,16 +577,20 @@ class ScrollEffects {
     }
 
     document.body.appendChild(launchEffect)
-
     rocketBtn.style.transition = "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
-    rocketBtn.style.transform = "rotate(-45deg) translateY(-100vh) scale(0.5)"
+    rocketBtn.style.transform = "translateY(-100vh) rotate(90deg)"
     rocketBtn.style.opacity = "0"
 
     setTimeout(() => {
       rocketBtn.style.transition = "all 0.3s ease"
-      rocketBtn.style.transform = "rotate(-45deg) translateY(0) scale(1)"
+      rocketBtn.style.transform = "translateY(0) rotate(90deg)"
       rocketBtn.style.opacity = window.scrollY > 300 ? "1" : "0"
-      document.body.removeChild(launchEffect)
+      rocketBtn.style.filter = "grayscale(100%)"
+      rocketBtn.querySelector("i").style.color = "#333"
+      rocketBtn.classList.remove("active")
+      if (document.body.contains(launchEffect)) {
+        document.body.removeChild(launchEffect)
+      }
     }, 1000)
   }
 
@@ -599,7 +681,6 @@ class PortfolioApp {
     })
 
     document.body.classList.add("loading")
-
     console.log("Portfolio website initialized successfully!")
   }
 }
