@@ -272,10 +272,10 @@ class RobotHead3D {
         const pupilRange = 0.1
 
         this.leftPupil.position.x = -0.4 + mouseX * pupilRange
-        this.leftPupil.position.y = 0.2 + -mouseY * pupilRange
+        this.leftPupil.position.y = 0.2 + mouseY * pupilRange // Hapus tanda minus
 
         this.rightPupil.position.x = 0.4 + mouseX * pupilRange
-        this.rightPupil.position.y = 0.2 + -mouseY * pupilRange
+        this.rightPupil.position.y = 0.2 + mouseY * pupilRange // Hapus tanda minus
       }
 
       // Gentle floating animation
@@ -634,8 +634,8 @@ class ScrollEffects {
         border-radius: 50%;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%) rotate(-45deg);
-        animation: rocketParticle 1s ease-out forwards;
+        transform: translate(-50%, -50%);
+        animation: rocketParticleFixed 1s ease-out forwards;
         animation-delay: ${i * 0.1}s;
       `
       launchEffect.appendChild(particle)
