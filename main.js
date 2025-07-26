@@ -6,7 +6,7 @@ let mouseX = 0,
 const THREE = window.THREE // Declare the THREE variable
 
 // Backend API Configuration
-const API_BASE_URL = "https://your-railway-app.railway.app" // Replace with your Railway URL
+const API_BASE_URL = "https://web-production-ac1c.up.railway.app/" // Replace with your Railway URL
 
 // Theme Management
 class ThemeManager {
