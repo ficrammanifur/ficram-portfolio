@@ -1,4 +1,3 @@
-# 🚀 Personal Portfolio – Ficram Manifur Farissa
 <h1 align="center"> 🚀 Personal Portfolio – Ficram Manifur Farissa</h1> 
 <p align="center"><em>Website portfolio pribadi yang menampilkan profil, keahlian, proyek, dan pendekatan kerja</em></p>
 
