@@ -90,7 +90,9 @@ Settings → Pages → Source → main / root → Save
 
 ---
 ##  🎨 Kustomisasi
+
 Ubah warna & tema: style.css
+
 Update konten: index.html
 
 ---
@@ -102,22 +104,29 @@ const headMaterial = new THREE.MeshPhongMaterial({ color: 0x667eea, shininess: 1
 ```
 ---
 ## 📊 SEO & Performance
+
 Semantic HTML, alt text, lazy load
+
 Responsive images & minimal dependency
+
 Fast load & mobile-friendly
 
 ---
 ## 🔄 Versi
 Versi	Fitur Utama
+
 v2.0	🤖 Robot 3D, My Approach, Testimonials, Resume button, update Focus Section
+
 v1.0	🌓 Dark/Light mode, 🚀 Rocket scroll-to-top, responsive design, AOS animation
 
 ---
 ## 🤝 Contributing
-Fork repo
+Fork repo```
 git checkout -b feature/AmazingFeature
-Commit perubahan
+```
+Commit perubahan```
 git push origin feature/AmazingFeature
+```
 Buka Pull Request
 
 ---
@@ -133,9 +142,13 @@ Buka Pull Request
 ---
 ## 🙏 Acknowledgments
 Three.js
+
 AOS.js
+
 Font Awesome
+
 Google Fonts
+
 GitHub Pages
 
 ---
