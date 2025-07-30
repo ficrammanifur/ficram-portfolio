@@ -131,7 +131,7 @@ Buka Pull Request
 ```
 
 ---
-🙏 Acknowledgments
+## 🙏 Acknowledgments
 Three.js
 AOS.js
 Font Awesome
