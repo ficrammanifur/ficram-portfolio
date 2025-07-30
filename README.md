@@ -1,12 +1,17 @@
 # 🚀 Personal Portfolio – Ficram Manifur Farissa
-
-Website portfolio pribadi yang menampilkan profil, keahlian, proyek, dan pendekatan kerja Ficram Manifur Farissa — mahasiswa Teknik Elektro fokus AI, IoT, Flutter, dan Flask backend.
+<h1 align="center"> 🚀 Personal Portfolio – Ficram Manifur Farissa</h1> 
+<p align="center"><em>Website portfolio pribadi yang menampilkan profil, keahlian, proyek, dan pendekatan kerja</em></p>
 
 ![Status](https://img.shields.io/badge/Status-Live-brightgreen) 
 ![Version](https://img.shields.io/badge/Version-2.0-blue)
-<p align="center"> <a href="https://github.com/ficrammanifur/ficrammanifur/blob/main/LICENSE"> <img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT" /> </a> </p>
 
-
+<p align="center"> 
+    <img src="https://https://img.shields.io/badge/Status-Live-brightgreen" /> 
+    <img src="https://https://img.shields.io/badge/Version-2.0-blue" /> 
+    <img src="https://img.shields.io/badge/languages-3-informational" /> 
+    <a href="https://github.com/ficrammanifur/ficrammanifur/blob/main/LICENSE"> 
+    <img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT" /> </a> 
+    </p>
 ---
 
 ## ✨ Fitur Terbaru (v2.0)
