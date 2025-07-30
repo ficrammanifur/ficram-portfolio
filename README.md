@@ -117,7 +117,8 @@ Buka Pull Request
 
 ---
 ## 📄 License
-MIT License – lihat file LICENSE
+
+<p align="center"> <a href="https://github.com/ficrammanifur/ficrammanifur/blob/main/LICENSE"> <img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT" /> </a> </p>
 
 ---
 ## 📞 Contact
