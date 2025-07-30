@@ -4,7 +4,8 @@ Website portfolio pribadi yang menampilkan profil, keahlian, proyek, dan pendeka
 
 ![Status](https://img.shields.io/badge/Status-Live-brightgreen) 
 ![Version](https://img.shields.io/badge/Version-2.0-blue)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+<p align="center"> <a href="https://github.com/ficrammanifur/ficrammanifur/blob/main/LICENSE"> <img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT" /> </a> </p>
+
 
 ---
 
@@ -114,11 +115,6 @@ git checkout -b feature/AmazingFeature
 Commit perubahan
 git push origin feature/AmazingFeature
 Buka Pull Request
-
----
-## 📄 License
-
-<p align="center"> <a href="https://github.com/ficrammanifur/ficrammanifur/blob/main/LICENSE"> <img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT" /> </a> </p>
 
 ---
 ## 📞 Contact
