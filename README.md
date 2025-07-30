@@ -4,6 +4,7 @@
 <p align="center"> 
     <img src="https://img.shields.io/badge/Status-Live-brightgreen" alt="Status: Live" />
     <img src="https://img.shields.io/badge/Version-2.0-blue" alt="Version: 2.0" />
+    <img src="https://img.shields.io/badge/html%2Fjs%2Fcss-100%25-red" />
     <img src="https://img.shields.io/badge/languages-3-informational" alt="Languages: 3" />
     <a href="https://github.com/ficrammanifur/ficrammanifur/blob/main/LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT" />
