@@ -2,9 +2,6 @@
 <h1 align="center"> 🚀 Personal Portfolio – Ficram Manifur Farissa</h1> 
 <p align="center"><em>Website portfolio pribadi yang menampilkan profil, keahlian, proyek, dan pendekatan kerja</em></p>
 
-![Status](https://img.shields.io/badge/Status-Live-brightgreen) 
-![Version](https://img.shields.io/badge/Version-2.0-blue)
-
 <p align="center"> 
     <img src="https://img.shields.io/badge/Status-Live-brightgreen" alt="Status: Live" />
     <img src="https://img.shields.io/badge/Version-2.0-blue" alt="Version: 2.0" />
