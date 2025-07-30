@@ -6,12 +6,14 @@
 ![Version](https://img.shields.io/badge/Version-2.0-blue)
 
 <p align="center"> 
-    <img src="https://https://img.shields.io/badge/Status-Live-brightgreen" /> 
-    <img src="https://https://img.shields.io/badge/Version-2.0-blue" /> 
-    <img src="https://img.shields.io/badge/languages-3-informational" /> 
-    <a href="https://github.com/ficrammanifur/ficrammanifur/blob/main/LICENSE"> 
-    <img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT" /> </a> 
-    </p>
+    <img src="https://img.shields.io/badge/Status-Live-brightgreen" alt="Status: Live" />
+    <img src="https://img.shields.io/badge/Version-2.0-blue" alt="Version: 2.0" />
+    <img src="https://img.shields.io/badge/languages-3-informational" alt="Languages: 3" />
+    <a href="https://github.com/ficrammanifur/ficrammanifur/blob/main/LICENSE">
+        <img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT" />
+    </a>
+</p>
+
 ---
 
 ## ✨ Fitur Terbaru (v2.0)
