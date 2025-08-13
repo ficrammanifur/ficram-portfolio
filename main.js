@@ -267,16 +267,16 @@ class RobotHead3D {
       robotHead.rotation.y += (mouseX * 0.2 - robotHead.rotation.y) * 0.05
       robotHead.rotation.x += (-mouseY * 0.1 - robotHead.rotation.x) * 0.05
 
-      // Enhanced eye tracking - pupils follow cursor more naturally
+      // Enhanced eye tracking - pupils follow cursor correctly
       if (this.leftPupil && this.rightPupil) {
-        const pupilRange = 0.08 // Reduced range for more subtle movement
+        const pupilRange = 0.08 // Range for pupil movement
         // Calculate pupil position within eye socket
         const leftEyeCenter = new THREE.Vector3(-0.4, 0.2, 1.1)
         const rightEyeCenter = new THREE.Vector3(0.4, 0.2, 1.1)
-        
-        // Direction vector towards mouse
-        const mouseVector = new THREE.Vector3(mouseX, mouseY, 1).normalize()
-        
+
+        // Adjust mouse vector to correct direction
+        const mouseVector = new THREE.Vector3(mouseX, -mouseY, 1).normalize()
+
         // Left pupil
         this.leftPupil.position.copy(leftEyeCenter)
         this.leftPupil.position.x += mouseVector.x * pupilRange
@@ -655,7 +655,7 @@ class ScrollEffects {
 
     document.body.appendChild(launchEffect)
     rocketBtn.style.transition = "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
-    rocketBtn.style.transform = "translateY(-100vh) rotate(-45deg)"
+    robotBtn.style.transform = "translateY(-100vh) rotate(-45deg)"
     rocketBtn.style.opacity = "0"
 
     setTimeout(() => {
@@ -721,7 +721,7 @@ class PerformanceOptimizer {
     images.forEach((img) => imageObserver.observe(img))
   }
 
-  preload ÉsCriticalResources() {
+  preloadCriticalResources() {
     const fontLink = document.createElement("link")
     fontLink.rel = "preload"
     fontLink.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
