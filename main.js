@@ -254,9 +254,8 @@ class RobotHead3D {
   }
 
   onMouseMove(event) {
-    // mouseX: -1 (left) to 1 (right)
+    // Normalize mouse coordinates to [-1, 1] range
     mouseX = (event.clientX / window.innerWidth) * 2 - 1
-    // mouseY: 1 (top) to -1 (bottom)
     mouseY = -(event.clientY / window.innerHeight) * 2 + 1
   }
 
@@ -268,15 +267,27 @@ class RobotHead3D {
       robotHead.rotation.y += (mouseX * 0.2 - robotHead.rotation.y) * 0.05
       robotHead.rotation.x += (-mouseY * 0.1 - robotHead.rotation.x) * 0.05
 
-      // Eye tracking - pupils follow cursor (inverted Y for desired effect)
+      // Enhanced eye tracking - pupils follow cursor more naturally
       if (this.leftPupil && this.rightPupil) {
-        const pupilRange = 0.1
-        // Invert mouseY effect for vertical movement
-        this.leftPupil.position.y = 0.2 - mouseY * pupilRange
-        this.rightPupil.position.y = 0.2 - mouseY * pupilRange
-        // X movement remains the same
-        this.leftPupil.position.x = -0.4 + mouseX * pupilRange
-        this.rightPupil.position.x = 0.4 + mouseX * pupilRange
+        const pupilRange = 0.08 // Reduced range for more subtle movement
+        // Calculate pupil position within eye socket
+        const leftEyeCenter = new THREE.Vector3(-0.4, 0.2, 1.1)
+        const rightEyeCenter = new THREE.Vector3(0.4, 0.2, 1.1)
+        
+        // Direction vector towards mouse
+        const mouseVector = new THREE.Vector3(mouseX, mouseY, 1).normalize()
+        
+        // Left pupil
+        this.leftPupil.position.copy(leftEyeCenter)
+        this.leftPupil.position.x += mouseVector.x * pupilRange
+        this.leftPupil.position.y += mouseVector.y * pupilRange
+        this.leftPupil.position.z = 1.2 // Maintain depth
+
+        // Right pupil
+        this.rightPupil.position.copy(rightEyeCenter)
+        this.rightPupil.position.x += mouseVector.x * pupilRange
+        this.rightPupil.position.y += mouseVector.y * pupilRange
+        this.rightPupil.position.z = 1.2 // Maintain depth
       }
 
       // Gentle floating animation
@@ -710,7 +721,7 @@ class PerformanceOptimizer {
     images.forEach((img) => imageObserver.observe(img))
   }
 
-  preloadCriticalResources() {
+  preload ÉsCriticalResources() {
     const fontLink = document.createElement("link")
     fontLink.rel = "preload"
     fontLink.href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
