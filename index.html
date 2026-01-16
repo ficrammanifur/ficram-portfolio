@@ -1,484 +1,149 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Ficram Manifur Farissa - Personal Portfolio</title>
-    <meta name="description" content="Tempat Ficram Manifur Farissa ngumpulin proyek iseng: robot tangan, IoT, dan ide-ide random yang (kadang) jalan." />
-    <meta name="google-site-verification" content="GeWxe7pHKvwLgYvJBnBfV1ml7INcuksCPJryFidfbNI" />
-    <meta name="msvalidate.01" content="82E8122F189CC43B5933AEAFCEA1CD55" />
-    
+
+    <meta name="description"
+          content="Tempat Ficram Manifur Farissa ngumpulin proyek iseng: robot tangan, IoT, dan ide-ide random yang (kadang) jalan." />
+
+    <meta name="google-site-verification"
+          content="GeWxe7pHKvwLgYvJBnBfV1ml7INcuksCPJryFidfbNI" />
+
+    <meta name="msvalidate.01"
+          content="82E8122F189CC43B5933AEAFCEA1CD55" />
+
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <!-- Particle Canvas Background (Hero Section Only) -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home">Ficram MF</a>
+            <div class="nav-brand">
+                <a href="index.html" class="logo">ficrammanifur</a>
             </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">Tentang</a>
-                <a href="#approach" class="nav-link">Pendekatan</a>
-                <a href="#focus" class="nav-link">Fokus</a>
-                <a href="#skills" class="nav-link">Keahlian</a>
-                <a href="#projects" class="nav-link">Proyek</a>
-                <a href="#testimonials" class="nav-link">Pesan</a>
-            </div>
-            <div class="nav-toggle">
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content" data-aos="fade-up">
-                <h1 class="hero-title">
-                    Halo, Saya <span class="highlight">Ficram Manifur Farissa</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Mahasiswa Teknik Elektro yang passionate dalam bidang AI, IoT, dan pengembangan aplikasi
-                </p>
-                <div class="hero-buttons">
-                    <a href="#about" class="btn btn-primary">Tentang Saya</a>
-                    <a href="#projects" class="btn btn-secondary">Lihat Proyek</a>
-                </div>
+    <!-- Hero Section with Canvas Background -->
+    <section class="hero" id="heroSection">
+        <div class="hero-content">
+            <div class="greeting">
+                <h1>Hey there <span class="wave">👋</span></h1>
             </div>
-            <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
-                <div class="profile-card">
-                    <div class="robot-container" id="robot-container">
-                        <!-- Robot Head with Enhanced Animations -->
-                        <div class="robot-head">
-                            <div class="robot-face">
-                                <!-- Eyes with blinking and looking animations -->
-                                <div class="eye left-eye">
-                                    <div class="lid"></div>
-                                    <div class="pupil"></div>
-                                </div>
-                                <div class="eye right-eye">
-                                    <div class="lid"></div>
-                                    <div class="pupil"></div>
-                                </div>
-                                <!-- Mouth -->
-                                <div class="robot-mouth"></div>
-                            </div>
-                            <!-- Antennas -->
-                            <div class="antenna left-antenna"></div>
-                            <div class="antenna right-antenna"></div>
-                        </div>
-                    </div>
-                    <div class="profile-description" style="text-align: justify;">
-                        I'm Ficram Manifur Farissa — sometimes a frontend developer, sometimes a backend developer, and often a fullstack developer who loves building responsive, interactive, and clean user experiences. With an academic background in Electrical Engineering, I enjoy bridging the gap between hardware and software: turning complex ideas into real, working prototypes.
-                    </div>
-                    <button id="download-resume" class="btn btn-primary">
-                        <i class="fas fa-download"></i>
-                        Download My Resume
-                    </button>
-                    <div class="floating-icons">
-                        <i class="fab fa-python"></i>
-                        <i class="fas fa-microchip"></i>
-                        <i class="fas fa-robot"></i>
-                        <i class="fab fa-flutter"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">
-                    <i class="fas fa-user-tie"></i>
-                    Tentang Saya
-                </h2>
-                <p class="section-subtitle">Mengenal lebih dekat tentang perjalanan dan passion saya</p>
-            </div>
+            <p class="subtitle">Electrical Engineering Student · Embedded Systems · AI Enthusiast</p>
             
-            <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
-                    <p style="text-align: justify;">
-                        Saya adalah mahasiswa Teknik Elektro yang memiliki ketertarikan mendalam pada teknologi modern,
-                        khususnya dalam bidang Artificial Intelligence dan Internet of Things. Perjalanan saya dimulai
-                        dari rasa ingin tahu yang besar tentang bagaimana teknologi dapat memecahkan masalah nyata
-                        dalam kehidupan sehari-hari.
-                    </p>
-                    <p style="text-align: justify;">
-                        Dengan pengalaman dalam pengembangan aplikasi menggunakan Flutter dan backend Flask,
-                        saya selalu berusaha untuk menciptakan solusi yang tidak hanya fungsional, tetapi juga
-                        user-friendly dan efisien.
-                    </p>
-                    
-                    <div class="stats">
-                        <div class="stat-item">
-                            <h3>3+</h3>
-                            <p>Proyek Selesai</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>2+</h3>
-                            <p>Tahun Belajar</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>5+</h3>
-                            <p>Teknologi Dikuasai</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="about-image" data-aos="fade-left">
-                    <div class="image-placeholder">
-                        <i class="fas fa-graduation-cap"></i>
-                        <p>Teknik Elektro</p>
-                    </div>
-                </div>
+            <div class="typing-container">
+                <span class="terminal-prompt">$</span>
+                <span class="typing-text" id="typingText"></span>
+                <span class="typing-cursor">|</span>
             </div>
+
+            <div class="cta-buttons">
+                <a href="about.html" class="btn btn-primary">Learn More</a>
+                <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator" id="scrollIndicator">
+            <span>Scroll to explore</span>
+            <div class="chevron"></div>
         </div>
     </section>
 
-    <!-- My Approach Section -->
-    <section id="approach" class="approach">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">
-                    🛠️ My Approach
-                </h2>
-                <p class="section-subtitle">Filosofi dan metodologi dalam mengerjakan setiap project</p>
-            </div>
-            
-            <div class="approach-content" data-aos="fade-up" data-aos-delay="200">
-                <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 30px; text-align: center;">
-                    Dalam mengerjakan project, saya selalu mengutamakan:
-                </p>
-                <ul class="approach-list">
-                    <li><strong>Eksperimen cepat:</strong> Lebih baik gagal cepat lalu diperbaiki, daripada terlalu lama merencanakan.</li>
-                    <li><strong>Pembelajaran berkelanjutan:</strong> Selalu update dengan tools, framework, dan konsep baru.</li>
-                    <li><strong>Menggabungkan teori & praktik:</strong> Memastikan ide tidak hanya bagus di kertas, tapi juga bisa diimplementasikan.</li>
-                    <li><strong>Berpikir sistemik:</strong> Mencari hubungan antar komponen untuk menciptakan solusi yang efisien.</li>
-                </ul>
-            </div>
+    <!-- GitHub Stats Section -->
+    <section class="stats-section">
+        <h2>GitHub Statistics</h2>
+        <div class="stats-container">
+            <img src="https://stats-github-readme.vercel.app/api?username=ficrammanifur&show_icons=true&theme=radical&hide_border=true&bg_color=1a1a2e&text_color=e4e4e7&title_color=9333ea"
+                 alt="GitHub Stats" class="stat-image">
+            <img src="https://stats-github-readme.vercel.app/api/top-langs/?username=ficrammanifur&layout=compact&theme=radical&hide_border=true&bg_color=1a1a2e&text_color=e4e4e7&title_color=9333ea"
+                 alt="Top Languages" class="stat-image">
         </div>
     </section>
 
-    <!-- Current Focus Section -->
-    <section id="focus" class="focus">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">
-                    <i class="fas fa-bullseye"></i>
-                    🎯 Focus Saat Ini
-                </h2>
-                <p class="section-subtitle">Area yang sedang saya dalami dan kembangkan</p>
-            </div>
-            
-            <div class="focus-text" data-aos="fade-up" data-aos-delay="100">
-                <p><strong>Saat ini, fokus utama saya adalah:</strong></p>
-                <ul>
-                    <li><strong>Pengembangan Prototipe Robot dan IoT.</strong> Contohnya: gesture clone robot dengan servo & ESP32, serta filling machine berbasis web & sensor ultrasonic.</li>
-                    <li><strong>Backend Python (Flask)</strong> untuk API, IoT control & automasi.</li>
-                    <li><strong>Web & Flutter</strong> untuk membuat interface yang lebih interaktif.</li>
-                    <li><strong>Integrasi AI</strong> (misalnya computer vision, machine learning) untuk membuat sistem menjadi lebih cerdas.</li>
-                </ul>
-                
-                <p><strong>Selain itu, saya sedang memperkuat skill di bidang:</strong></p>
-                <ul>
-                    <li>MQTT & komunikasi IoT.</li>
-                    <li>Cloud deployment & CI/CD sederhana.</li>
-                    <li>Pengolahan data sensor & visualisasi real-time.</li>
-                </ul>
-            </div>
+    <!-- Quick Skills Preview -->
+    <section class="skills-preview">
+        <h2>Featured Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-tag">Python</div>
+            <div class="skill-tag">JavaScript</div>
+            <div class="skill-tag">C/C++</div>
+            <div class="skill-tag">TypeScript</div>
+            <div class="skill-tag">Flutter</div>
+            <div class="skill-tag">FastAPI</div>
+            <div class="skill-tag">ESP32</div>
+            <div class="skill-tag">PyTorch</div>
         </div>
+        <a href="about.html" class="view-all">View all skills →</a>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">
-                    <i class="fas fa-tools"></i>
-                    Keahlian
-                </h2>
-                <p class="section-subtitle">Teknologi dan tools yang saya kuasai</p>
-            </div>
-            
-            <div class="skills-content">
-                <div class="skills-category" data-aos="fade-right">
-                    <h3>Programming Languages</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-python"></i>
-                            <span>Python</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-js"></i>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-code"></i>
-                            <span>Dart</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-html5"></i>
-                            <span>HTML/CSS</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-category" data-aos="fade-up">
-                    <h3>Frameworks & Libraries</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/flutter.svg" alt="Flutter Logo">
-                            <span>Flutter</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-flask"></i>
-                            <span>Flask</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-brain"></i>
-                            <span>TensorFlow</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Pandas</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skills-category" data-aos="fade-left">
-                    <h3>Tools & Technologies</h3>
-                    <div class="skill-items">
-                        <div class="skill-item">
-                            <i class="fab fa-git-alt"></i>
-                            <span>Git</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-database"></i>
-                            <span>Firebase</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-microchip"></i>
-                            <span>Arduino</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-microchip"></i>
-                            <span>ESP32</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Featured Projects Preview -->
+    <section class="projects-preview">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <article class="project-card">
+                <div class="project-tag">IoT</div>
+                <h3>Filling Machine ESP32</h3>
+                <p>Automated filling machine control system with web interface and real-time monitoring</p>
+                <a href="projects.html" class="project-link">View More →</a>
+            </article>
 
-    <!-- Life Motto Section -->
-    <section id="motto" class="motto">
-        <div class="container">
-            <div class="motto-content" data-aos="fade-up">
-                <div class="motto-icon">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <h2 class="motto-title">Motto Hidup</h2>
-                <blockquote class="motto-quote">
-                "I always tell myself — it's not hard, it's just new."
-                Kalimat sederhana ini selalu mengingatkan saya bahwa rasa kesulitan muncul bukan karena
-                kita tidak mampu, tapi karena kita sedang berada di awal proses belajar sesuatu yang baru.
-                </blockquote>
-                <p class="motto-author">- Ficram Manifur Farissa</p>
-            </div>
-        </div>
-    </section>
+            <article class="project-card">
+                <div class="project-tag">Robotics</div>
+                <h3>Gesture Clone Robot</h3>
+                <p>Robotic arm that mimics human hand gestures using computer vision and servo control</p>
+                <a href="projects.html" class="project-link">View More →</a>
+            </article>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">
-                    <i class="fas fa-project-diagram"></i>
-                    Portofolio Proyek
-                </h2>
-                <p class="section-subtitle">Beberapa proyek yang telah saya kerjakan</p>
-            </div>
-            
-            <div class="projects-grid">
-                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="project-image">
-                        <i class="fas fa-store"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>PastryStock</h3>
-                        <p>Aplikasi manajemen stok untuk toko kue dengan fitur tracking inventory, notifikasi stok menipis, dan laporan penjualan.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Flutter</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Dart</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ficrammanifur/flutter-project" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i>
-                                GitHub Repo
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                                Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="project-image">
-                        <i class="fas fa-hand-paper"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Robot Tangan</h3>
-                        <p>Proyek robotika yang mengembangkan robot tangan dengan kontrol gesture menggunakan sensor dan machine learning.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Arduino</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">OpenCV</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ficrammanifur/Gesture-Clone-Robot" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i>
-                                GitHub Repo
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-play"></i>
-                                Video
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="project-image">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>IoT Monitoring System</h3>
-                        <p>Sistem monitoring lingkungan berbasis IoT dengan sensor suhu, kelembaban, dan kualitas udara dengan dashboard real-time.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Raspberry Pi</span>
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ficrammanifur/Esp32-mqtt-project" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i>
-                                GitHub Repo
-                            </a>
-                            <a href="https://ficrammanifur.github.io/Esp32-mqtt-project/" class="project-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-external-link-alt"></i>
-                                Live Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <article class="project-card">
+                <div class="project-tag">Mobile</div>
+                <h3>PastryStock</h3>
+                <p>Full-stack inventory management app for bakeries with ARIMA stock forecasting</p>
+                <a href="projects.html" class="project-link">View More →</a>
+            </article>
         </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">
-                    <i class="fas fa-comments"></i>
-                    What People Say
-                </h2>
-                <p class="section-subtitle">Voices from clients, collaborators, and friends who have experienced my work.</p>
-            </div>
-            
-            <div class="testimonial-content">
-                <div class="testimonial-form" data-aos="fade-right">
-                    <h3 style="margin-bottom: 20px; color: var(--text-primary);">Send Me A Message</h3>
-                    <form id="testimonial-form">
-                        <div class="form-group">
-                            <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="position" name="position" placeholder="Position/Title" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="testimonialMessage" name="testimonialMessage" placeholder="Your message..." rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i>
-                            Submit
-                        </button>
-                    </form>
-                </div>
-                
-                <div class="testimonials-display" data-aos="fade-left">
-                    <div id="testimonials-list">
-                        <!-- Testimonials will be displayed here -->
-                    </div>
-                </div>
-            </div>
-        </div>
+        <a href="projects.html" class="view-all">See All Projects →</a>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-text">
-                    <p>© 2024 Ficram Manifur Farissa. Dibuat dengan <i class="fas fa-heart"></i> dan teknologi modern.</p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://github.com/ficrammanifur" class="social-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/ficram-manifur-farissa-418280376/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://www.instagram.com/ficrammanifur/" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://wa.me/6282311363925" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
+        <div class="footer-content">
+            <p>&copy; 2025 Ficram Manifur. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ficrammanifur" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+                <a href="https://instagram.com/ficrammanifur" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+                <a href="https://linkedin.com/in/ficrammanifur" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+                <a href="mailto:ficramm@gmail.com" aria-label="Email">Email</a>
             </div>
         </div>
     </footer>
 
-    <!-- AOS Animation -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Custom JavaScript -->
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/particles.js"></script>
 </body>
 </html>
