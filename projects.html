@@ -41,96 +41,8 @@
     <!-- Projects Section -->
     <section class="projects-section">
         <h2>Full Stack & IoT Projects</h2>
-        <div class="projects-full-grid">
-            <article class="project-item">
-                <div class="project-header">
-                    <h3>PastryStock</h3>
-                    <span class="project-type">Full Stack · Flutter · AI</span>
-                </div>
-                <p>Complete inventory management system for bakeries with ARIMA stock forecasting, built with Flutter and Python backend. Features real-time inventory tracking and predictive analytics.</p>
-                <div class="tech-stack">
-                    <span class="tech">Flutter</span>
-                    <span class="tech">Python</span>
-                    <span class="tech">ARIMA</span>
-                    <span class="tech">Firebase</span>
-                </div>
-                <a href="https://github.com/ficrammanifur/flutter-project/tree/main/PastryStock" target="_blank" rel="noopener" class="project-btn">View on GitHub →</a>
-            </article>
-
-            <article class="project-item">
-                <div class="project-header">
-                    <h3>Gesture Clone Robot</h3>
-                    <span class="project-type">Robotics · Computer Vision</span>
-                </div>
-                <p>Robotic arm system that autonomously mimics human hand gestures using OpenCV and computer vision. Implements real-time gesture recognition and servo motor control.</p>
-                <div class="tech-stack">
-                    <span class="tech">Python</span>
-                    <span class="tech">OpenCV</span>
-                    <span class="tech">Arduino</span>
-                    <span class="tech">Robotics</span>
-                </div>
-                <a href="https://github.com/ficrammanifur/Gesture-Clone-Robot" target="_blank" rel="noopener" class="project-btn">View on GitHub →</a>
-            </article>
-
-            <article class="project-item">
-                <div class="project-header">
-                    <h3>Schedule Assistant App</h3>
-                    <span class="project-type">Mobile · Flutter · AI</span>
-                </div>
-                <p>Intelligent scheduling application that helps users manage tasks and appointments. Features smart notifications and AI-powered schedule suggestions built with Flutter.</p>
-                <div class="tech-stack">
-                    <span class="tech">Flutter</span>
-                    <span class="tech">Firebase</span>
-                    <span class="tech">AI</span>
-                    <span class="tech">Mobile</span>
-                </div>
-                <a href="https://github.com/ficrammanifur/flutter-project/tree/main/Asistant%20Penjadwalan" target="_blank" rel="noopener" class="project-btn">View on GitHub →</a>
-            </article>
-
-            <article class="project-item">
-                <div class="project-header">
-                    <h3>Tofico Analyzer</h3>
-                    <span class="project-type">Data Science · MCDM</span>
-                </div>
-                <p>Multi-criteria decision-making tool using SAW (Simple Additive Weighting) and WP (Weighted Product) methods. Analyzes and evaluates complex decision scenarios with data visualization.</p>
-                <div class="tech-stack">
-                    <span class="tech">Python</span>
-                    <span class="tech">MCDM</span>
-                    <span class="tech">Data Analysis</span>
-                    <span class="tech">Web</span>
-                </div>
-                <a href="https://github.com/ficrammanifur/tofico-analyzer" target="_blank" rel="noopener" class="project-btn">View on GitHub →</a>
-            </article>
-
-            <article class="project-item">
-                <div class="project-header">
-                    <h3>Filling Machine w/ ESP32</h3>
-                    <span class="project-type">IoT · Hardware · Web Control</span>
-                </div>
-                <p>Automated filling machine system with ESP32 microcontroller. Features web-based control interface, real-time monitoring, and data logging via MQTT protocol.</p>
-                <div class="tech-stack">
-                    <span class="tech">ESP32</span>
-                    <span class="tech">MQTT</span>
-                    <span class="tech">Web</span>
-                    <span class="tech">IoT</span>
-                </div>
-                <a href="https://github.com/ficrammanifur/filling-machine" target="_blank" rel="noopener" class="project-btn">View on GitHub →</a>
-            </article>
-
-            <article class="project-item">
-                <div class="project-header">
-                    <h3>Control Motor via Dabble</h3>
-                    <span class="project-type">Hardware · Mobile · Arduino</span>
-                </div>
-                <p>Motor control system that can be operated via Dabble mobile app over Bluetooth. Features multiple control modes and real-time feedback from the motor sensors.</p>
-                <div class="tech-stack">
-                    <span class="tech">Arduino</span>
-                    <span class="tech">Bluetooth</span>
-                    <span class="tech">Mobile</span>
-                    <span class="tech">Hardware</span>
-                </div>
-                <a href="https://github.com/ficrammanifur/Control-Motor-With-DABBLE-APP" target="_blank" rel="noopener" class="project-btn">View on GitHub →</a>
-            </article>
+        <div class="projects-full-grid" id="projectsGrid">
+            <div class="loading">Loading projects...</div>
         </div>
     </section>
 
@@ -180,5 +92,6 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/projects-loader.js"></script>
 </body>
 </html>

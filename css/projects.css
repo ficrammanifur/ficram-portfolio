@@ -91,6 +91,36 @@
   color: var(--color-accent);
 }
 
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.project-demo {
+  display: inline-block;
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-fast);
+}
+
+.project-demo:hover {
+  color: var(--color-primary);
+}
+
+.loading {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--color-text-secondary);
+}
+
+.error {
+  text-align: center;
+  color: #ef4444;
+  padding: var(--spacing-lg);
+}
+
 /* Live Demos Section */
 .live-demos {
   background-color: var(--color-bg-secondary);
