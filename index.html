@@ -1,161 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FMN.SYS | Personal Portfolio</title>
+    
+    <!-- Meta Verification -->
+    <meta name="google-site-verification" content="GeWxe7pHKvwLgYvJBnBfV1ml7INcuksCPJryFidfbNI">
+    <meta name="msvalidate.01" content="82E8122F189CC43B5933AEAFCEA1CD55">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <title>Ficram Manifur Farissa - Personal Portfolio</title>
-
-    <meta name="description"
-          content="Tempat Ficram Manifur Farissa ngumpulin proyek iseng: robot tangan, IoT, dan ide-ide random yang (kadang) jalan." />
-
-    <meta name="google-site-verification"
-          content="GeWxe7pHKvwLgYvJBnBfV1ml7INcuksCPJryFidfbNI" />
-
-    <meta name="msvalidate.01"
-          content="82E8122F189CC43B5933AEAFCEA1CD55" />
-
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/main.css">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- Particle Canvas Background (Hero Section Only) -->
-    <canvas id="particleCanvas"></canvas>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="index.html" class="logo">ficrammanifur</a>
-            </div>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link active">Home</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="projects.html" class="nav-link">Projects</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
+    <div class="crt-overlay"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass-panel border-b border-white/5">
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 border border-primary flex items-center justify-center text-primary font-bold text-xs">F</div>
+            <div class="text-white font-bold text-sm tracking-tighter">FMN.SYS <span class="text-[8px] opacity-40 ml-1">V2.5</span></div>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="index.html" class="nav-link text-white/70 hover:text-white">Home</a>
+            <a href="about.html" class="nav-link text-white/70 hover:text-white">About</a>
+            <a href="projects.html" class="nav-link text-white/70 hover:text-white">Projects</a>
+            <a href="contact.html" class="nav-link text-white/70 hover:text-white">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-[8px] opacity-40 hidden sm:inline">Uptime: 99.9%</span>
+            <a href="mailto:ficramm@gmail.com" class="px-3 py-1.5 btn-glow text-[10px] font-bold uppercase">Initialize</a>
         </div>
     </nav>
 
-    <!-- Hero Section with Canvas Background -->
-    <section class="hero" id="heroSection">
-        <div class="hero-content">
-            <div class="profile-section">
-                <div class="profile-image-container">
-                    <img src="assets/foto.jpg" alt="Ficram Manifur Farissa" class="profile-image" />
-                </div>
+    <!-- HOME -->
+    <section id="home" class="relative min-h-screen flex items-center px-6 md:px-20 z-10 pt-16">
+        <div class="max-w-4xl">
+            <div class="flex items-center space-x-3 mb-6 reveal">
+                <span class="w-12 h-[1px] bg-primary"></span>
+                <span class="text-primary text-[10px] tracking-[0.4em] uppercase">Field Engineering & Software Dev</span>
             </div>
-
-            <div class="greeting">
-                <h1>Hey there <span class="wave">👋</span></h1>
+            <h1 class="text-4xl md:text-8xl font-bold mb-6 tracking-tighter leading-none reveal">
+                FICRAM <br>
+                <span class="text-primary opacity-90">MANIFUR</span> FARISSA
+            </h1>
+            <div class="h-8 mb-8">
+                <h2 id="typing-motto" class="text-lg md:text-2xl text-secondary font-light italic opacity-80"></h2>
             </div>
-            <p class="subtitle">Electrical Engineering Student · Embedded Systems · AI Enthusiast</p>
-
-            <div class="typing-container">
-                <span class="terminal-prompt">$</span>
-                <span class="typing-text" id="typingText"></span>
-                <span class="typing-cursor">|</span>
+            <p class="text-xs md:text-sm opacity-50 max-w-lg leading-relaxed mb-10 reveal">
+                Electrical Field Engineer specialized in IoT, Industrial Power Systems, and Computer Vision. 
+                Integrating high-voltage reliability with cloud-scale intelligence.
+            </p>
+            <div class="flex flex-wrap gap-4 reveal">
+                <a href="projects.html" class="px-8 py-4 bg-primary text-black font-bold uppercase text-[10px] tracking-widest hover:scale-105 transition-transform flex items-center">
+                    Project Database →
+                </a>
+                <a href="about.html" class="px-8 py-4 glass-panel border-white/10 font-bold uppercase text-[10px] tracking-widest hover:border-primary transition-all">Who I Am</a>
             </div>
-
-            <div class="cta-buttons">
-                <a href="about.html" class="btn btn-primary">Learn More</a>
-                <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
-                <a href="assets/cv.pdf" class="btn btn-tertiary" download>Download CV</a>
-            </div>
-        </div>
-
-        <div class="scroll-indicator" id="scrollIndicator">
-            <span>Scroll to explore</span>
-            <div class="chevron"></div>
         </div>
     </section>
 
-    <!-- GitHub Stats Section -->
-    <section class="stats-section">
-        <h2>GitHub Statistics</h2>
-        <div class="stats-container">
-            <img src="https://stats-github-readme.vercel.app/api?username=ficrammanifur&show_icons=true&theme=radical&hide_border=true&bg_color=1a1a2e&text_color=e4e4e7&title_color=9333ea"
-                 alt="GitHub Stats" class="stat-image">
-            <img src="https://stats-github-readme.vercel.app/api/top-langs/?username=ficrammanifur&layout=compact&theme=radical&hide_border=true&bg_color=1a1a2e&text_color=e4e4e7&title_color=9333ea"
-                 alt="Top Languages" class="stat-image">
-        </div>
-    </section>
-
-    <!-- Quick Skills Preview -->
-    <section class="skills-preview">
-        <h2>Featured Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-tag">Python</div>
-            <div class="skill-tag">JavaScript</div>
-            <div class="skill-tag">C/C++</div>
-            <div class="skill-tag">TypeScript</div>
-            <div class="skill-tag">Flutter</div>
-            <div class="skill-tag">FastAPI</div>
-            <div class="skill-tag">ESP32</div>
-            <div class="skill-tag">PyTorch</div>
-        </div>
-        <a href="about.html" class="view-all">View all skills →</a>
-    </section>
-
-    <!-- Featured Projects Preview -->
-    <section class="projects-preview">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid">
-            <article class="project-card">
-                <div class="project-tag">IoT</div>
-                <h3>Filling Machine ESP32</h3>
-                <p>Automated filling machine control system with web interface and real-time monitoring</p>
-                <a href="projects.html" class="project-link">View More →</a>
-            </article>
-
-            <article class="project-card">
-                <div class="project-tag">Robotics</div>
-                <h3>Gesture Clone Robot</h3>
-                <p>Robotic arm that mimics human hand gestures using computer vision and servo control</p>
-                <a href="projects.html" class="project-link">View More →</a>
-            </article>
-
-            <article class="project-card">
-                <div class="project-tag">Mobile</div>
-                <h3>PastryStock</h3>
-                <p>Full-stack inventory management app for bakeries with ARIMA stock forecasting</p>
-                <a href="projects.html" class="project-link">View More →</a>
-            </article>
-        </div>
-        <a href="projects.html" class="view-all">See All Projects →</a>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2025 Ficram Manifur. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://github.com/ficrammanifur" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
-                <a href="https://instagram.com/ficrammanifur" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-                <a href="https://www.linkedin.com/in/ficram-manifur-farissa-418280376" 
-                   target="_blank" 
-                   rel="noopener" 
-                   aria-label="LinkedIn">
-                   LinkedIn
-                </a>
-                <a href="mailto:ficramm@gmail.com" aria-label="Email">Email</a>
+                <a href="https://github.com/ficrammanifur" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://instagram.com/ficrammanifur" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.linkedin.com/in/ficram-manifur-farissa-418280376" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="mailto:ficramm@gmail.com">Email</a>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <script src="js/particles.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Load featured projects on home (optional)
+        loadProjects('project-grid'); // kalau mau tambah grid di home
+    </script>
 </body>
 </html>
