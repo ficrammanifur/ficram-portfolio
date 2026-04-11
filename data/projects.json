@@ -1,0 +1,38 @@
+[
+    {
+        "title": "PastryStock AI",
+        "desc": "Inventory system with ARIMA stock forecasting built with Flutter and Python.",
+        "tags": ["Flutter", "Python", "ARIMA"],
+        "link": "https://github.com/ficrammanifur/flutter-project/tree/main/PastryStock"
+    },
+    {
+        "title": "Gesture Clone Robot",
+        "desc": "Human hand gesture mimic system using OpenCV and Servo control.",
+        "tags": ["Python", "OpenCV", "Arduino"],
+        "link": "https://github.com/ficrammanifur/Gesture-Clone-Robot"
+    },
+    {
+        "title": "Filling Machine IoT",
+        "desc": "ESP32 based automated filling system with MQTT web dashboard.",
+        "tags": ["ESP32", "MQTT", "Web"],
+        "link": "https://github.com/ficrammanifur/filling-machine"
+    },
+    {
+        "title": "Tofico Analyzer",
+        "desc": "MCDM Decision support system using SAW & WP algorithms.",
+        "tags": ["Python", "Data", "MCDM"],
+        "link": "https://github.com/ficrammanifur/tofico-analyzer"
+    },
+    {
+        "title": "Pakan Ayam Otomatis",
+        "desc": "Smart feeding system with ESP32 and remote web monitoring.",
+        "tags": ["IoT", "Web", "ESP32"],
+        "link": "https://github.com/ficrammanifur/Pakan-Ayam-Otomatis"
+    },
+    {
+        "title": "Dabble Motor Control",
+        "desc": "Bluetooth controlled motor system via Dabble Mobile app.",
+        "tags": ["Arduino", "Bluetooth", "Mobile"],
+        "link": "https://github.com/ficrammanifur/Control-Motor-With-DABBLE-APP"
+    }
+]
