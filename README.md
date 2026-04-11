@@ -13,7 +13,7 @@
 Integrating high-voltage reliability with cloud-scale intelligence.
 
 **Live Website**  
-https://ficrammanifur.github.io/Portfolio-Ficrammanifur/
+https://ficrammanifur.github.io/ficram-portfolio/
 
 </div>
 
