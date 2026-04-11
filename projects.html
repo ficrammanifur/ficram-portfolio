@@ -1,97 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ficram Manifur - Projects Portfolio">
-    <title>Projects - Ficram Manifur</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/projects.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Projects | FMN.SYS</title>
+    
+    <meta name="google-site-verification" content="GeWxe7pHKvwLgYvJBnBfV1ml7INcuksCPJryFidfbNI">
+    <meta name="msvalidate.01" content="82E8122F189CC43B5933AEAFCEA1CD55">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="index.html" class="logo">ficrammanifur</a>
-            </div>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="projects.html" class="nav-link active">Projects</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
+
+    <div class="crt-overlay"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass-panel border-b border-white/5">
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 border border-primary flex items-center justify-center text-primary font-bold text-xs">F</div>
+            <div class="text-white font-bold text-sm tracking-tighter">FMN.SYS <span class="text-[8px] opacity-40 ml-1">V2.5</span></div>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="index.html" class="nav-link text-white/70 hover:text-white">Home</a>
+            <a href="about.html" class="nav-link text-white/70 hover:text-white">About</a>
+            <a href="projects.html" class="nav-link text-white/70 hover:text-white">Projects</a>
+            <a href="contact.html" class="nav-link text-white/70 hover:text-white">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-[8px] opacity-40 hidden sm:inline">Uptime: 99.9%</span>
+            <a href="mailto:ficramm@gmail.com" class="px-3 py-1.5 btn-glow text-[10px] font-bold uppercase">Initialize</a>
         </div>
     </nav>
 
-    <!-- Projects Hero -->
-    <section class="projects-hero">
-        <h1>My Projects</h1>
-        <p class="lead">Full Stack, IoT, AI, and Robotics Projects</p>
-    </section>
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="relative py-32 px-6 md:px-20 z-10 border-t border-white/5 pt-24">
+        <div class="mb-16 flex justify-between items-end reveal">
+            <div>
+                <h3 class="text-xs text-primary tracking-[0.5em] uppercase mb-2">Portfolio Archive</h3>
+                <h2 class="text-3xl font-bold uppercase tracking-tight">System Deployments</h2>
+            </div>
+            <div class="text-[9px] opacity-30 uppercase tracking-[0.3em] hidden md:block">Filtered by: Latest Hardware & Software</div>
+        </div>
 
-    <!-- Projects Section -->
-    <section class="projects-section">
-        <h2>Full Stack & IoT Projects</h2>
-        <div class="projects-full-grid" id="projectsGrid">
-            <div class="loading">Loading projects...</div>
+        <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Projects akan di-load oleh JavaScript -->
         </div>
     </section>
 
-    <!-- Live Demos Section -->
-    <section class="live-demos">
-        <h2>Live Demos</h2>
-        <div class="demos-grid">
-            <div class="demo-card">
-                <h3>Filling Machine Web Control</h3>
-                <p>Real-time web interface for controlling and monitoring the automated filling machine</p>
-                <a href="https://ficrammanifur.github.io/Filling-Machine-Web-Control/" target="_blank" rel="noopener" class="demo-btn">Visit Demo →</a>
-            </div>
-            <div class="demo-card">
-                <h3>Sistem Pakan Ayam Otomatis</h3>
-                <p>Automated chicken feeding system with ESP32 control and web monitoring dashboard</p>
-                <a href="https://ficrammanifur.github.io/Pakan-Ayam-Otomatis/" target="_blank" rel="noopener" class="demo-btn">Visit Demo →</a>
-            </div>
-            <div class="demo-card">
-                <h3>Tofico Analyzer</h3>
-                <p>Interactive tool for multi-criteria decision making analysis with visualization</p>
-                <a href="https://fidelmutiara.github.io/tofico-analyzer/" target="_blank" rel="noopener" class="demo-btn">Visit Demo →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- GitHub Contribution Snake -->
-    <section class="snake-section">
-        <h2>GitHub Contributions</h2>
-        <div class="terminal-prompt">
-            <span class="prompt-text">ficrammanifur@linuxD:~$ ./run ular</span>
-        </div>
-        <img src="https://raw.githubusercontent.com/ficrammanifur/ficrammanifur/output/github-contribution-grid-snake.svg" 
-             alt="GitHub Contribution Snake" class="snake-image">
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2025 Ficram Manifur. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://github.com/ficrammanifur" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
-                <a href="https://instagram.com/ficrammanifur" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-                <a href="https://linkedin.com/in/ficrammanifur" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-                <a href="mailto:ficramm@gmail.com" aria-label="Email">Email</a>
+                <a href="https://github.com/ficrammanifur" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://instagram.com/ficrammanifur" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.linkedin.com/in/ficram-manifur-farissa-418280376" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="mailto:ficramm@gmail.com">Email</a>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <script src="js/projects-loader.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Load semua projects
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProjects('project-grid');
+        });
+    </script>
 </body>
 </html>
