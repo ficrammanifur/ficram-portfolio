@@ -1,141 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About Ficram Manifur - Skills, Experience & Interests">
-    <title>About - Ficram Manifur</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/about.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>About | FMN.SYS</title>
+    
+    <meta name="google-site-verification" content="GeWxe7pHKvwLgYvJBnBfV1ml7INcuksCPJryFidfbNI">
+    <meta name="msvalidate.01" content="82E8122F189CC43B5933AEAFCEA1CD55">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <a href="index.html" class="logo">ficrammanifur</a>
-            </div>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link active">About</a></li>
-                <li><a href="projects.html" class="nav-link">Projects</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
+
+    <div class="crt-overlay"></div>
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass-panel border-b border-white/5">
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 border border-primary flex items-center justify-center text-primary font-bold text-xs">F</div>
+            <div class="text-white font-bold text-sm tracking-tighter">FMN.SYS <span class="text-[8px] opacity-40 ml-1">V2.5</span></div>
+        </div>
+        <div class="hidden md:flex space-x-8">
+            <a href="index.html" class="nav-link text-white/70 hover:text-white">Home</a>
+            <a href="about.html" class="nav-link text-white/70 hover:text-white">About</a>
+            <a href="projects.html" class="nav-link text-white/70 hover:text-white">Projects</a>
+            <a href="contact.html" class="nav-link text-white/70 hover:text-white">Contact</a>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-[8px] opacity-40 hidden sm:inline">Uptime: 99.9%</span>
+            <a href="mailto:ficramm@gmail.com" class="px-3 py-1.5 btn-glow text-[10px] font-bold uppercase">Initialize</a>
         </div>
     </nav>
 
-    <!-- About Hero -->
-    <section class="about-hero">
-        <h1>About Me</h1>
-        <p class="lead">Electrical Engineering student passionate about embedded systems, robotics, and AI</p>
-    </section>
-
-    <!-- About Content -->
-    <section class="about-content">
-        <div class="about-intro">
-            <div class="intro-text">
-                <h2>Who I Am</h2>
-                <p>I'm Ficram Manifur, an Electrical Engineering student with a passion for building intelligent systems that bridge hardware and software. My interests span embedded systems, robotics, full-stack development, and machine learning.</p>
-                <p>Currently, I'm focused on developing IoT solutions using microcontrollers like ESP32 and Arduino, combined with modern web technologies and AI frameworks. I love solving real-world problems through creative engineering and continuous learning.</p>
-            </div>
-        </div>
-
-        <div class="skills-section">
-            <h2>Skills & Technologies</h2>
-            
-            <div class="skill-category">
-                <h3>Programming Languages</h3>
-                <div class="skill-badges">
-                    <span class="badge">Python</span>
-                    <span class="badge">JavaScript</span>
-                    <span class="badge">C</span>
-                    <span class="badge">C++</span>
-                    <span class="badge">Java</span>
-                    <span class="badge">TypeScript</span>
-                    <span class="badge">Dart</span>
-                    <span class="badge">SQL</span>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="relative py-32 px-6 md:px-20 z-10 border-t border-white/5 pt-24">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <h3 class="text-xs text-primary tracking-[0.5em] uppercase mb-4">Core Identity</h3>
+                <h2 class="text-3xl font-bold mb-8">ENGINEERING ACROSS LAYERS</h2>
+                <div class="space-y-6 text-sm opacity-60 leading-relaxed">
+                    <p>
+                        Saya adalah <strong>Field Engineer dan IoT Developer</strong> yang membangun teknologi dari lapangan hingga ke cloud. 
+                        Berpengalaman mengelola infrastruktur elektrikal industri, sistem tenaga surya, dan jaringan CCTV.
+                    </p>
+                    <p>
+                        Spesialis dalam integrasi hardware dan software menggunakan ESP32, Python, dan Computer Vision. 
+                        Dengan standar keselamatan kerja (K3), saya menciptakan sistem otomasi dan robotika yang cerdas dan efisien.
+                    </p>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-2 gap-4">
+                    <div class="glass-panel p-4 border-l-4 border-primary">
+                        <div class="text-xl font-bold">SILVER</div>
+                        <div class="text-[8px] uppercase tracking-widest opacity-50">Pekan Inovasi Nasional 2025</div>
+                    </div>
+                    <div class="glass-panel p-4 border-l-4 border-secondary">
+                        <div class="text-xl font-bold">2nd PLACE</div>
+                        <div class="text-[8px] uppercase tracking-widest opacity-50">National ESC 2025</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="skill-category">
-                <h3>Frameworks & Libraries</h3>
-                <div class="skill-badges">
-                    <span class="badge">Flutter</span>
-                    <span class="badge">Flask</span>
-                    <span class="badge">FastAPI</span>
-                    <span class="badge">Firebase</span>
-                    <span class="badge">MySQL</span>
-                    <span class="badge">PyTorch</span>
-                    <span class="badge">YOLOv8</span>
-                    <span class="badge">OpenCV</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal">
+                <div class="glass-panel p-8 relative overflow-hidden">
+                    <div class="scanline"></div>
+                    <div class="text-primary font-bold mb-4">01. IoT STACK</div>
+                    <ul class="text-[10px] space-y-2 opacity-70">
+                        <li>• ESP32 / ARDUINO</li>
+                        <li>• RASPBERRY PI 5</li>
+                        <li>• MQTT / LORA</li>
+                        <li>• MATTER PROTOCOL</li>
+                    </ul>
                 </div>
-            </div>
-
-            <div class="skill-category">
-                <h3>Hardware & IoT</h3>
-                <div class="skill-badges">
-                    <span class="badge">ESP32</span>
-                    <span class="badge">Arduino</span>
-                    <span class="badge">MQTT</span>
-                    <span class="badge">Linux</span>
-                    <span class="badge">ROS2</span>
-                    <span class="badge">Signal Processing</span>
+                <div class="glass-panel p-8 relative overflow-hidden">
+                    <div class="scanline"></div>
+                    <div class="text-secondary font-bold mb-4">02. VISION/AI</div>
+                    <ul class="text-[10px] space-y-2 opacity-70">
+                        <li>• YOLO V8 / OPENCV</li>
+                        <li>• MEDIAPIPE</li>
+                        <li>• GEMINI API</li>
+                        <li>• PYTORCH</li>
+                    </ul>
                 </div>
-            </div>
-        </div>
-
-        <div class="interests-section">
-            <h2>Areas of Expertise</h2>
-            <div class="interests-grid">
-                <div class="interest-card">
-                    <h3>Embedded Systems</h3>
-                    <p>Microcontroller programming, IoT protocols (MQTT), real-time systems</p>
+                <div class="glass-panel p-8 relative overflow-hidden">
+                    <div class="scanline"></div>
+                    <div class="text-white font-bold mb-4">03. ELECTRICAL</div>
+                    <ul class="text-[10px] space-y-2 opacity-70">
+                        <li>• SOLAR MPPT SYSTEMS</li>
+                        <li>• INDUSTRIAL CCTV</li>
+                        <li>• MAINTENANCE (K3)</li>
+                        <li>• AUTOMATION STRATEGY</li>
+                    </ul>
                 </div>
-                <div class="interest-card">
-                    <h3>Robotics</h3>
-                    <p>ROS2, autonomous systems, motion control, computer vision integration</p>
-                </div>
-                <div class="interest-card">
-                    <h3>AI & Machine Learning</h3>
-                    <p>Computer vision, object detection, time series prediction, NLP</p>
-                </div>
-                <div class="interest-card">
-                    <h3>Full Stack Development</h3>
-                    <p>Flutter mobile apps, Python backends, modern web technologies</p>
-                </div>
-                <div class="interest-card">
-                    <h3>Signal Processing</h3>
-                    <p>Digital filtering, control systems, sensor fusion</p>
-                </div>
-                <div class="interest-card">
-                    <h3>System Integration</h3>
-                    <p>Hardware-software integration, testing, optimization</p>
+                <div class="glass-panel p-8 relative overflow-hidden">
+                    <div class="scanline"></div>
+                    <div class="text-primary font-bold mb-4">04. SOFTWARE</div>
+                    <ul class="text-[10px] space-y-2 opacity-70">
+                        <li>• LARAVEL / REACT</li>
+                        <li>• FLUTTER / DART</li>
+                        <li>• PYTHON / FASTAPI</li>
+                        <li>• TAILWIND CSS</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; 2025 Ficram Manifur. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://github.com/ficrammanifur" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
-                <a href="https://instagram.com/ficrammanifur" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-                <a href="https://linkedin.com/in/ficrammanifur" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-                <a href="mailto:ficramm@gmail.com" aria-label="Email">Email</a>
+                <a href="https://github.com/ficrammanifur" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://instagram.com/ficrammanifur" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.linkedin.com/in/ficram-manifur-farissa-418280376" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="mailto:ficramm@gmail.com">Email</a>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
